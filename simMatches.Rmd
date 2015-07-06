@@ -1,0 +1,73 @@
+---
+title: "simMatches"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate many matches between two players, given a number of parameters, that include probability of each player winning a point on their first serve, on their second serve, and the probability that their first serve will go in.  This function returns a detailed list with data about the sets and games within each simulated match.
+
+### Usage
+
+```{r eval=FALSE}
+simMatches(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE,
+           finalSetTiebreak = FALSE, players = c("A", "B"),
+           p2A = NULL, firstServeA = NULL,
+           p2B = NULL, firstServeB = NULL,
+           .progress = "none")
+```
+
+### Arguments
+
+param | details
+------|--------
+n | number of simulations (default is 1000)
+pA | probability of player A winning point on their first serve
+pB | probability of player B winning point on their first serve
+sets | number of sets (3 or 5)
+tiebreaks | play tiebreaks in the event the set reaches 6 games all (default = TRUE)
+finalSetTiebreak | play a final set tiebreak if sets and games are tied, otherwise keep playing
+players | player names (vector of length 2)
+p2A | probability of player A winning point on their second serve
+firstServeA | probability of player A's first serve being in
+p2A | probability of player B winning point on their second serve
+firstServeB | probability of player B's first serve being in
+.progress | `plyr`'s  progress bar
+
+### Return
+
+Unlike using `replicate` on `simMatch`, using `simMatches` will return a detailed list, containing data about the simulated matches rather than just the results of those simulations.
+
+### Methods
+
+There are a number of generic methods available for an object returned by `simMatches`, these are `print`, `summary` and `plot`, example use is show below.
+
+### Example
+
+```{r}
+egMatches <- simMatches(n = 100, sets = 3,
+                        pA = .78, pB = .70,
+                        p2A = .56, firstServeA = .67,
+                        p2B = .6, firstServeB = .7)
+```
+The object `egMatches` has a class of **`r class(egMatches)[2]`** which comes with a few methods
+
+```{r}
+egMatches
+summary(egMatches)
+plot(egMatches)
+```
+
+```{r echo=FALSE}
+df <- simDf(egMatches)
+head(df)
+```
+
+The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated matches into a dataframe, containing data about each of the simulations, including data going all the way down to the individual games.  `egMatches` contains **100** simulations, which produces a dataset of dimensions `r dim(egMatches)`.
+
+```{r eval=FALSE}
+df <- simDf(egMatches)
+```
+```{r}
+head(df)
+```

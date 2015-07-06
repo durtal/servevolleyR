@@ -1,0 +1,63 @@
+---
+title: "simSets"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate many sets between two players given a number of parameters, that include probability of each player winning a point on their first serve, on their second serve, and the probability that their first serve will go in.  This function returns a detailed list with data about the games within each simulated set.
+
+### Usage
+
+```{r eval=FALSE}
+simSets(n = 1000, pA, pB,
+        playTiebreak = TRUE, players = c("A", "B"),
+        p2A = NULL, firstServeA = NULL,
+        p2B = NULL, firstServeB = NULL,
+        .progress = "none")
+```
+
+### Arguments
+
+param | details
+------|--------
+n | number of simulations (default is 1000)
+pA | probability of player A winning point on their first serve
+pB | probability of player B winning point on their first serve
+playTiebreak | play tiebreak in the event the set reaches 6 games all
+players | player names (vector of length 2)
+p2A | probability of player A winning point on their second serve
+firstServeA | probability of player A's first serve being in
+p2A | probability of player B winning point on their second serve
+firstServeB | probability of player B's first serve being in
+.progress | `plyr`'s  progress bar
+
+### Return
+
+Unlike using `replicate` on `simSet`, using `simSets` will return a detailed list, containing data about the simulated sets rather than just the results of those simulations.
+
+### Methods
+
+There are a number of generic methods available for an object returned by `simSets`, these are `print`, `summary` and `plot`, example use is show below.
+
+### Example
+
+```{r}
+egSets <- simSets(n = 100,
+                  pA = .78, pB = .70, p2A = .56, p2B = .6,
+                  firstServeA = .67, firstServeB = .7)
+```
+The object `egSets` has a class of **`r class(egSets)[2]`** which comes with a few methods
+
+```{r}
+egSets
+summary(egSets)
+plot(egSets)
+```
+
+The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated games into a dataframe.
+
+```{r}
+df <- simDf(egSets)
+head(df)
+```

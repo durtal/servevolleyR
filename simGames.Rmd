@@ -1,0 +1,53 @@
+---
+title: "simGames"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate many service games given a number of parameters for the server, that include probability of the server winning a point on their first serve, on their second serve, and the probability that their first serve will go in, returning a detailed list.
+
+### Usage
+
+```{r eval=FALSE}
+simGames(n = 1e3, p, p2 = NULL, firstServe = NULL, detail = FALSE, player = "A")
+```
+
+### Arguments
+
+param | details
+------|--------
+n | number of simulations (default is 1000)
+p | probability of server winning point on their first serve
+p2 | probability of server winning point on their second serve
+firstServe | probability of first serve being in
+player | player name
+.progress | `plyr`'s  progress bar
+
+### Return
+
+Unlike using `replicate` on `simGame`, using `simGames` will return a detailed list, containing data about the simulated games rather than just the results of those simulations
+
+### Methods
+
+There are a number of generic methods available for an object returned by `simGames`, these are `print`, `summary` and `plot`, example use is show below.
+
+### Example
+
+```{r}
+egGames <- simGames(n = 10, p = .78, p2 = .56, firstServe = .67)
+```
+The object `egGames` has a class of **`r class(egGames)[2]`** which comes with a few methods
+
+```{r}
+egGames
+summary(egGames)
+plot(egGames)
+```
+
+The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated games into a dataframe.
+
+```{r}
+df <- simDf(egGames)
+head(df)
+```

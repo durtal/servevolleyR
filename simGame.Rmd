@@ -1,0 +1,56 @@
+---
+title: "simGame"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate a service game given a number of parameters for the server, that include probability of the server winning a point on their first serve, on their second serve, and the probability that their first serve will go in.
+
+### Usage
+
+```{r eval=FALSE}
+simGame(p, p2 = NULL, firstServe = NULL, detail = FALSE, player = "A")
+```
+
+### Arguments
+
+param | details
+------|--------
+p | probability of server winning point on their first serve
+p2 | probability of server winning point on their second serve
+firstServe | probability of first serve being in
+detail | return a detailed list about the game, including service probabilities, points won, and result
+player | player name
+
+### Return
+
+The default function returns a 1, if the server wins the game, or 0, if the returner wins the game.  If `detail` argument is changed to `TRUE`, then the function will return a list with details about the simulated game, including service probabilities, points won by the server and returner, and the result (1 or 0)
+
+### Methods
+
+There are a number of generic methods available for an object returned by `simGame`, these are `print` and `summary`, example use is show below.
+
+### Example
+
+```{r}
+simGame(p = .78, p2 = .56, firstServe = .67)
+# a look at a detailed return
+game <- simGame(p = .78, p2 = .56, firstServe = .67, detail = TRUE)
+```
+The object `game` has a class of **`r class(game)[2]`** which comes with a few methods
+
+```{r}
+game
+
+summary(game)
+```
+
+To simulate many games, you can either use `replicate` or [simGames](simGames.html)
+
+```{r}
+game <- replicate(1e3, simGame(p = .78, p2 = .56, firstServe = .67))
+head(game)
+# summarise results
+table(game) / sum(table(game))
+```

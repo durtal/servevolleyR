@@ -1,0 +1,61 @@
+---
+title: "simSet"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate a set between two players given a number of parameters, that include probability of each player winning a point on their first serve, on their second serve, and the probability that their first serve will go in.
+
+### Usage
+
+```{r eval=FALSE}
+simSet(pA, pB,
+       playTiebreak = TRUE, players = c("A", "B"),
+       p2A = NULL, firstServeA = NULL,
+       p2B = NULL, firstServeB = NULL)
+```
+
+### Arguments
+
+param | details
+------|--------
+pA | probability of player A winning point on their first serve
+pB | probability of player B winning point on their first serve
+playTiebreak | play tiebreak in the event the set reaches 6 games all
+players | player names (vector of length 2)
+detail | return a detailed list about the set, including service probabilities, games won, game data and result
+p2A | probability of player A winning point on their second serve
+firstServeA | probability of player A's first serve being in
+p2A | probability of player B winning point on their second serve
+firstServeB | probability of player B's first serve being in
+
+### Return
+
+The default function returns a 1, if the server wins the set, or 0, if the returner wins the set.  If `detail` argument is changed to `TRUE`, then the function will return a list with details about the simulated set, including service probabilities, games won by each player, and the result (1 or 0)
+
+### Methods
+
+There are a number of generic methods available for the detailed list returned by `simSet`, these are `print` and `summary`, example use is show below.
+
+### Example
+
+```{r}
+simSet(pA = .78, pB = .70, p2A = .56, p2B = .6,
+       firstServeA = .67, firstServeB = .7)
+egSet <- simSet(pA = .78, pB = .70, p2A = .56, p2B = .6,
+                firstServeA = .67, firstServeB = .7, detail = TRUE)
+```
+The object `egSet` has a class of **`r class(egSet)[2]`** which comes with a few methods
+
+```{r}
+egSet
+summary(egSet)
+```
+
+If `detail = TRUE` then the list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated set into a dataframe.
+
+```{r}
+df <- simDf(egSet)
+df
+```

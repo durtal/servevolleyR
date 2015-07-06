@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>simSets</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+p{
+  font-size: 13px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<h1>servevolleyR</h1>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://durtal.github.io/">durtal.github.io</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li class="dropdown">
+					<a href="Datasets" class="dropdown-toggle" data-toggle="dropdown">
+						Functions <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Simulation</li>
+						<li>
+							<a href="simPoint.html">simPoint</a>
+						</li>
+                        <li>
+                        	<a href="simGame.html">simGame</a>
+                        </li>
+						<li>
+							<a href="simTiebreak.html">simTiebreak</a>
+						</li>
+						<li>
+							<a href="simSet.html">simSet</a>
+						</li>
+						<li>
+							<a href="simMatch.html">simMatch</a>
+						</li>
+						<li class="dropdown-header">Simulation<strong>s</strong></li>
+						<li>
+							<a href="simGames.html">simGames</a>
+						</li>
+						<li>
+							<a href="simSets.html">simSets</a>
+						</li>
+						<li>
+							<a href="simMatches.html">simMatches</a>
+						</li>
+						<li class="dropdown-header">Other</li>
+						<li>
+							<a href="simDf.html">simDf</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="header">
+<h1 class="title">simSets</h1>
+</div>
+
+
+<p>Simulate many sets between two players given a number of parameters, that include probability of each player winning a point on their first serve, on their second serve, and the probability that their first serve will go in. This function returns a detailed list with data about the games within each simulated set.</p>
+<div id="usage" class="section level3">
+<h3>Usage</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simSets</span>(<span class="dt">n =</span> <span class="dv">1000</span>, pA, pB,
+        <span class="dt">playTiebreak =</span> <span class="ot">TRUE</span>, <span class="dt">players =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),
+        <span class="dt">p2A =</span> <span class="ot">NULL</span>, <span class="dt">firstServeA =</span> <span class="ot">NULL</span>,
+        <span class="dt">p2B =</span> <span class="ot">NULL</span>, <span class="dt">firstServeB =</span> <span class="ot">NULL</span>,
+        <span class="dt">.progress =</span> <span class="st">&quot;none&quot;</span>)</code></pre>
+</div>
+<div id="arguments" class="section level3">
+<h3>Arguments</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">param</th>
+<th align="left">details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">n</td>
+<td align="left">number of simulations (default is 1000)</td>
+</tr>
+<tr class="even">
+<td align="left">pA</td>
+<td align="left">probability of player A winning point on their first serve</td>
+</tr>
+<tr class="odd">
+<td align="left">pB</td>
+<td align="left">probability of player B winning point on their first serve</td>
+</tr>
+<tr class="even">
+<td align="left">playTiebreak</td>
+<td align="left">play tiebreak in the event the set reaches 6 games all</td>
+</tr>
+<tr class="odd">
+<td align="left">players</td>
+<td align="left">player names (vector of length 2)</td>
+</tr>
+<tr class="even">
+<td align="left">p2A</td>
+<td align="left">probability of player A winning point on their second serve</td>
+</tr>
+<tr class="odd">
+<td align="left">firstServeA</td>
+<td align="left">probability of player A’s first serve being in</td>
+</tr>
+<tr class="even">
+<td align="left">p2A</td>
+<td align="left">probability of player B winning point on their second serve</td>
+</tr>
+<tr class="odd">
+<td align="left">firstServeB</td>
+<td align="left">probability of player B’s first serve being in</td>
+</tr>
+<tr class="even">
+<td align="left">.progress</td>
+<td align="left"><code>plyr</code>’s progress bar</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="return" class="section level3">
+<h3>Return</h3>
+<p>Unlike using <code>replicate</code> on <code>simSet</code>, using <code>simSets</code> will return a detailed list, containing data about the simulated sets rather than just the results of those simulations.</p>
+</div>
+<div id="methods" class="section level3">
+<h3>Methods</h3>
+<p>There are a number of generic methods available for an object returned by <code>simSets</code>, these are <code>print</code>, <code>summary</code> and <code>plot</code>, example use is show below.</p>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<pre class="sourceCode r"><code class="sourceCode r">egSets &lt;-<span class="st"> </span><span class="kw">simSets</span>(<span class="dt">n =</span> <span class="dv">100</span>,
+                  <span class="dt">pA =</span> .<span class="dv">78</span>, <span class="dt">pB =</span> .<span class="dv">70</span>, <span class="dt">p2A =</span> .<span class="dv">56</span>, <span class="dt">p2B =</span> .<span class="dv">6</span>,
+                  <span class="dt">firstServeA =</span> .<span class="dv">67</span>, <span class="dt">firstServeB =</span> .<span class="dv">7</span>)</code></pre>
+<p>The object <code>egSets</code> has a class of <strong>svR_sets</strong> which comes with a few methods</p>
+<pre class="sourceCode r"><code class="sourceCode r">egSets</code></pre>
+<pre><code>## 
+## Simulation of 100 sets:
+## 
+## Server Probabilities:
+##  player    p   p2 firstServe
+##       A 0.78 0.56       0.67
+##       B 0.70 0.60       0.70
+## 
+## Player A (A) won 0.63 of sets.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egSets)</code></pre>
+<pre><code>## 
+## Simulation of 100 sets:
+## 
+## Server Probabilities:
+##  player    p   p2 firstServe
+##       A 0.78 0.56       0.67
+##       B 0.70 0.60       0.70
+## 
+## Player A (A) won 0.63 of sets.
+##        playerB
+## playerA    0    1    2    3    4    5    6    7
+##       2                               0.02     
+##       3                               0.01     
+##       4                               0.15     
+##       5                                    0.03
+##       6 0.01 0.04 0.02 0.31 0.07           0.16
+##       7                          0.03 0.15</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(egSets)</code></pre>
+<p><img src="simSets_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
+<p>The returned list can also be entered into the function <a href="simDf.html"><code>simDf</code></a> which will convert the simulated games into a dataframe.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egSets)
+<span class="kw">head</span>(df)</code></pre>
+<pre><code>##   simNo pA pB setA setB set_res gameNo serving    p   p2 firstServe
+## 1     1  A  B    7    6       1      1       A 0.78 0.56       0.67
+## 2     1  A  B    7    6       1      2       B 0.70 0.60       0.70
+## 3     1  A  B    7    6       1      3       A 0.78 0.56       0.67
+## 4     1  A  B    7    6       1      4       B 0.70 0.60       0.70
+## 5     1  A  B    7    6       1      5       A 0.78 0.56       0.67
+## 6     1  A  B    7    6       1      6       B 0.70 0.60       0.70
+##   game_res server returner
+## 1        1      4        2
+## 2        1      4        2
+## 3        0      1        4
+## 4        0      2        4
+## 5        1      4        1
+## 6        1      4        2</code></pre>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

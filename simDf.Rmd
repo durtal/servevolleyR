@@ -1,0 +1,139 @@
+---
+title: "simDf"
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+This function converts the detailed lists returned (when `detail=TRUE`) in the following functions:
+
+* [simGame](simGame.html)
+* [simGames](simGames.html)
+* [simSet](simSet.html)
+* [simSets](simSets.html)
+* [simMatch](simMatch.html)
+* [simMatches](simMatches.html)
+
+and converts them into a dataset with meta data about players, points, games, and sets.
+
+### Usage
+
+```{r eval = FALSE}
+simDf(object)
+```
+
+When converting an object returned by `simGames`, `simSets` and `simMatches`, I'd recommend adding `plyr`'s progress bar, `.progress = "text"`, to `simDf` as large number of simulations will take a while to convert to a dataset.
+
+```{r eval=FALSE}
+simDf(object, .progress = "time")
+```
+## `simGame` and `simGames`
+
+A look at the dataset returned by `simGame` and `simGames`, only small number of simulations
+
+```{r}
+egGame <- simGame(p = .78, p2 = .56, firstServe = .67, detail = TRUE)
+egGames <- simGames(n = 10, p = .78, p2 = .56, firstServe = .67)
+
+egGame <- simDf(egGame)
+head(egGame)
+
+egGames <- simDf(egGames)
+head(egGames)
+```
+The variables in each dataset are effectively the same, except `simGames` dataset has a variable **simNo** to identify the unique simulations, a look at those variables:
+
+variables | about
+----------|------
+simNo | simulation number
+player | player name
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+result | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game
+
+## `simSet` and `simSets`
+
+A look at the dataset returned by `simSet` and `simSets`, only a small number of simulations.
+
+```{r}
+egSet <- simSet(pA = .78, pB = .70, p2A = .56, p2B = .6,
+                firstServeA = .67, firstServeB = .7, detail = TRUE)
+egSets <- simSets(n = 10,
+                  pA = .78, pB = .70, p2A = .56, p2B = .6,
+                  firstServeA = .67, firstServeB = .7)
+
+egSet <- simDf(egSet)
+head(egSet)
+
+egSets <- simDf(egSets)
+head(egSets)
+```
+
+The variables in each dataset are similar to those found in the returned datasets from `simGame` and `simGames`, a look at those variables:
+
+variables | about
+----------|------
+simNo | simulation number
+pA | player A
+pB | player B
+setA | games won by player A
+setB | games won by player B
+set_res | set result (1 if player A wins, 0 if player B wins)
+gameNo | game number in set
+serving | player serving
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+game_res | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game
+
+## `simMatch` and `simMatches`
+
+A look at the dataset returned by `simMatch` and `simMatches`, only a small number of simulations.
+
+```{r}
+egMatch <- simMatch(sets = 3, finalSetTiebreak = TRUE, detail = TRUE,
+                    pA = .78, pB = .70,
+                    p2A = .56, firstServeA = .67,
+                    p2B = .6, firstServeB = .7)
+egMatches <- simMatches(n = 10, sets = 3,
+                        pA = .78, pB = .70,
+                        p2A = .56, firstServeA = .67,
+                        p2B = .6, firstServeB = .7)
+
+egMatch <- simDf(egMatch)
+head(egMatch)
+
+egMatches <- simDf(egMatches)
+head(egMatches)
+```
+
+The variables in each dataset are similar to those found in the returned datasets from `simSet`, `simSets`, `simGame` and `simGames`, a look at those variables:
+
+variables | about
+----------|------
+simNo | simulation number
+playerA | player A (who started the match serving)
+playerB | player B (who started the match returning)
+mA | sets won by player A
+mB | sets won by player B
+result | match result, (1 if player A wins, 0 otherwise)
+setNo | set number
+pA | player A (who started the set serving)
+pB | player B (who started the set returning)
+setA | games won by player A
+setB | games won by player B
+set_res | set result (1 if player A wins, 0 if player B wins)
+gameNo | game number in set
+serving | player serving
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+game_res | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

@@ -1,0 +1,40 @@
+---
+title: "simPoint"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate a service point given a number of parameters for the server, that include probability of the server winning a point on their first serve, on their second serve, and the probability that their first serve will go in.
+
+### Usage
+
+```{r eval=FALSE}
+simPoint(p, p2 = NULL, firstServe = NULL)
+```
+
+### Arguments
+
+param | details
+------|--------
+p | probability of server winning point on their first serve
+p2 | probability of server winning point on their second serve
+firstServe | probability of first serve being in
+
+### Return
+
+The value returned is numeric, 1 if the server wins and 0 if the returner wins.
+
+### Example
+
+```{r}
+simPoint(p = .78, p2 = .56, firstServe = .67)
+```
+
+Use `replicate` to simulate many points:
+
+```{r}
+pts <- replicate(1e3, simPoint(p = .78, p2 = .56, firstServe = .67))
+# summarise results
+table(pts) / sum(table(pts))
+```

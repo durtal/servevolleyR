@@ -1,0 +1,40 @@
+---
+title: "simTiebreak"
+---
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(servevolleyR)
+```
+
+Simulate a tiebreak at the end of a set, given a number of parameters, that include probability of each player winning a point on their first serve, on their second serve, and the probability that their first serve will go in.
+
+### Usage
+
+Player A serves first in the tiebreak, after which each player serves two points each.
+
+```{r eval=FALSE}
+simTiebreak(pA, pB, p2A = NULL, firstServeA = NULL, p2B = NULL, firstServeB = NULL)
+```
+
+### Arguments
+
+param | details
+------|--------
+pA | probability of player A winning point on their serve
+pB | probability of player B winning point on their serve
+p2A | probability of player A winning point on their second serve
+firstServeA | probability of player A getting their first serve in
+p2B | probability of player B winning point on their second serve
+firstServeB | probability of player B getting their first serve in
+
+### Return
+
+This function returns 1, if player A wins the game, or 0 if player B wins the game.
+
+### Example
+
+```{r}
+simTiebreak(pA = .76, pB = .67)
+# simulate many tiebreaks
+tiebreak <- replicate(1e3, simTiebreak(pA = .76, pB = .67))
+table(tiebreak) / sum(table(tiebreak))
+```

@@ -1,0 +1,36 @@
+---
+title: "Intro"
+---
+
+These are the help pages for the R package **servevolleyR**, a package to simulate tennis points, games, tiebreaks, sets and matches, using the probability that a server will win a point on their first serve.
+
+### Installation
+
+To install and load the package (devtools must be installed first):
+
+```{r eval=FALSE}
+devtools::install_github("durtal/servevolleyR")
+library(servevolleyR)
+```
+
+### Functions
+
+A number of functions have `print`, `summary` and `plot` methods, these can be seen on the individual function home pages
+
+function | about | link
+---------|-------|------
+simPoint | simulate a point | [simPoint](simPoint.html)
+simGame | simulate a game | [simGame](simGame.html)
+simTiebreak | simulate a tiebreak | [simTiebreak](simTiebreak.html)
+simSet | simulate a set | [simSet](simSet.html)
+simMatch | simulate a match | [simMatch](simMatch.html)
+simGames | simulate many games | [simGames](simGames.html)
+simSets | simulate many sets | [simSets](simSets.html)
+simMatches | simulate many matches | [simMatches](simMatches.html)
+simDf | convert simulated results into a dataframe | [simDf](simDf.html)
+
+### Example
+
+The plot below is an example from using the plot method for `simMatches`
+
+![](serena-venus.jpeg)
