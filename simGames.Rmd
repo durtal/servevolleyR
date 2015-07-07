@@ -26,7 +26,7 @@ player | player name
 
 ### Return
 
-Unlike using `replicate` on `simGame`, using `simGames` will return a detailed list, containing data about the simulated games rather than just the results of those simulations
+`simGames` will return a detailed list, containing data about the simulated games rather than just the results of the simulations, this list can then be converted to a dataset using [simDf](simDf.html), an example dataset is show below.
 
 ### Methods
 
@@ -45,9 +45,24 @@ summary(egGames)
 plot(egGames)
 ```
 
-The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated games into a dataframe.
+### Using `simDf`
+
+The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated games into a dataset.
 
 ```{r}
 df <- simDf(egGames)
 head(df)
 ```
+
+The variables in the dataset are:
+
+variables | about
+----------|------
+simNo | simulation number
+player | player name
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+result | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

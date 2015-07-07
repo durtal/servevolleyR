@@ -183,6 +183,7 @@ img {
 <tr class="header">
 <th align="left">param</th>
 <th align="left">details</th>
+<th align="left">default</th>
 </tr>
 </thead>
 <tbody>
@@ -200,35 +201,43 @@ img {
 </tr>
 <tr class="even">
 <td align="left">tiebreaks</td>
-<td align="left">play tiebreaks in the event the set reaches 6 games all (default = TRUE)</td>
+<td align="left">play tiebreaks in the event the set reaches 6 games all</td>
+<td align="left"><code>TRUE</code></td>
 </tr>
 <tr class="odd">
 <td align="left">finalSetTiebreak</td>
 <td align="left">play a final set tiebreak if sets and games are tied, otherwise keep playing</td>
+<td align="left"><code>FALSE</code></td>
 </tr>
 <tr class="even">
 <td align="left">players</td>
 <td align="left">player names (vector of length 2)</td>
+<td align="left">c(“A”, “B”)</td>
 </tr>
 <tr class="odd">
 <td align="left">detail</td>
 <td align="left">return a detailed list about the match, including service probabilities, sets won, set data, games won, game data and result</td>
+<td align="left"><code>FALSE</code></td>
 </tr>
 <tr class="even">
 <td align="left">p2A</td>
 <td align="left">probability of player A winning point on their second serve</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 <tr class="odd">
 <td align="left">firstServeA</td>
 <td align="left">probability of player A’s first serve being in</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 <tr class="even">
 <td align="left">p2A</td>
 <td align="left">probability of player B winning point on their second serve</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 <tr class="odd">
 <td align="left">firstServeB</td>
 <td align="left">probability of player B’s first serve being in</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 </tbody>
 </table>
@@ -248,35 +257,126 @@ img {
          <span class="dt">p2A =</span> .<span class="dv">56</span>, <span class="dt">firstServeA =</span> .<span class="dv">67</span>,
          <span class="dt">p2B =</span> .<span class="dv">6</span>, <span class="dt">firstServeB =</span> .<span class="dv">7</span>)</code></pre>
 <pre><code>## [1] 1</code></pre>
+<p>Adding <code>detail = TRUE</code> will return a detailed list with data about the simulated match.</p>
 <pre class="sourceCode r"><code class="sourceCode r">egMatch &lt;-<span class="st"> </span><span class="kw">simMatch</span>(<span class="dt">sets =</span> <span class="dv">3</span>, <span class="dt">finalSetTiebreak =</span> <span class="ot">TRUE</span>, <span class="dt">detail =</span> <span class="ot">TRUE</span>,
                     <span class="dt">pA =</span> .<span class="dv">78</span>, <span class="dt">pB =</span> .<span class="dv">70</span>,
                     <span class="dt">p2A =</span> .<span class="dv">56</span>, <span class="dt">firstServeA =</span> .<span class="dv">67</span>,
                     <span class="dt">p2B =</span> .<span class="dv">6</span>, <span class="dt">firstServeB =</span> .<span class="dv">7</span>)</code></pre>
-<p>The object <code>egMatch</code> has a class of <strong>svR_match</strong> which comes with a few methods</p>
+<p>The object <code>egMatch</code> has a class of <strong>svR_match</strong> which comes with a print method</p>
 <pre class="sourceCode r"><code class="sourceCode r">egMatch</code></pre>
 <pre><code>## Match Result:
 ##  A won the match.
 ## 
-##  player sets set1 set2 set3
-##       A    2    6    5    6
-##       B    1    3    7    3</code></pre>
-<p>The returned list can also be entered into the function <a href="simDf.html"><code>simDf</code></a> which will convert the simulated match into a dataframe, containing data about each set played, and the games in each set.</p>
-<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatch)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre>
+##  player sets set1 set2
+##       A    2    6    6
+##       B    0    3    4</code></pre>
+</div>
+<div id="using-simdf" class="section level3">
+<h3>Using <code>simDf</code></h3>
+<p>If the function is called with <code>detail = TRUE</code>, then the list returned can be converted into a dataset using the <a href="simDf.html">simDf</a> function:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatch)
+<span class="kw">head</span>(df)</code></pre>
 <pre><code>##   playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1       A       B  2  1      1     1  A  B    6    3       1      1
-## 2       A       B  2  1      1     1  A  B    6    3       1      2
-## 3       A       B  2  1      1     1  A  B    6    3       1      3
-## 4       A       B  2  1      1     1  A  B    6    3       1      4
-## 5       A       B  2  1      1     1  A  B    6    3       1      5
-## 6       A       B  2  1      1     1  A  B    6    3       1      6
+## 1       A       B  2  0      1     1  A  B    6    3       1      1
+## 2       A       B  2  0      1     1  A  B    6    3       1      2
+## 3       A       B  2  0      1     1  A  B    6    3       1      3
+## 4       A       B  2  0      1     1  A  B    6    3       1      4
+## 5       A       B  2  0      1     1  A  B    6    3       1      5
+## 6       A       B  2  0      1     1  A  B    6    3       1      6
 ##   serving    p   p2 firstServe game_res server returner
-## 1       A 0.78 0.56       0.67        1      4        1
-## 2       B 0.70 0.60       0.70        1      4        1
-## 3       A 0.78 0.56       0.67        1      4        0
-## 4       B 0.70 0.60       0.70        1      5        3
-## 5       A 0.78 0.56       0.67        1      4        2
-## 6       B 0.70 0.60       0.70        1      4        2</code></pre>
+## 1       A 0.78 0.56       0.67        1      4        2
+## 2       B 0.70 0.60       0.70        1      6        4
+## 3       A 0.78 0.56       0.67        1      4        1
+## 4       B 0.70 0.60       0.70        0      1        4
+## 5       A 0.78 0.56       0.67        1      4        0
+## 6       B 0.70 0.60       0.70        1      4        0</code></pre>
+<p>The dataset contains the following variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variables</th>
+<th align="left">about</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">playerA</td>
+<td align="left">player A (who started the match serving)</td>
+</tr>
+<tr class="even">
+<td align="left">playerB</td>
+<td align="left">player B (who started the match returning)</td>
+</tr>
+<tr class="odd">
+<td align="left">mA</td>
+<td align="left">sets won by player A</td>
+</tr>
+<tr class="even">
+<td align="left">mB</td>
+<td align="left">sets won by player B</td>
+</tr>
+<tr class="odd">
+<td align="left">result</td>
+<td align="left">match result, (1 if player A wins, 0 otherwise)</td>
+</tr>
+<tr class="even">
+<td align="left">setNo</td>
+<td align="left">set number</td>
+</tr>
+<tr class="odd">
+<td align="left">pA</td>
+<td align="left">player A (who started the set serving)</td>
+</tr>
+<tr class="even">
+<td align="left">pB</td>
+<td align="left">player B (who started the set returning)</td>
+</tr>
+<tr class="odd">
+<td align="left">setA</td>
+<td align="left">games won by player A</td>
+</tr>
+<tr class="even">
+<td align="left">setB</td>
+<td align="left">games won by player B</td>
+</tr>
+<tr class="odd">
+<td align="left">set_res</td>
+<td align="left">set result (1 if player A wins, 0 if player B wins)</td>
+</tr>
+<tr class="even">
+<td align="left">gameNo</td>
+<td align="left">game number in set</td>
+</tr>
+<tr class="odd">
+<td align="left">serving</td>
+<td align="left">player serving</td>
+</tr>
+<tr class="even">
+<td align="left">p</td>
+<td align="left">probability of server winning a point on their first serve</td>
+</tr>
+<tr class="odd">
+<td align="left">p2</td>
+<td align="left">probability of server winning a point on their second serve</td>
+</tr>
+<tr class="even">
+<td align="left">firstServe</td>
+<td align="left">probability of first serve being in</td>
+</tr>
+<tr class="odd">
+<td align="left">game_res</td>
+<td align="left">game result (1 if server wins, 0 if returner wins)</td>
+</tr>
+<tr class="even">
+<td align="left">server</td>
+<td align="left">number of points won by server in service game</td>
+</tr>
+<tr class="odd">
+<td align="left">returner</td>
+<td align="left">number of points won by returner in service game</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

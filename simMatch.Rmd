@@ -18,19 +18,19 @@ simMatch(pA, pB, sets = c(3, 5), tiebreaks = TRUE,
 
 ### Arguments
 
-param | details
-------|--------
-pA | probability of player A winning point on their first serve
-pB | probability of player B winning point on their first serve
-sets | number of sets (3 or 5)
-tiebreaks | play tiebreaks in the event the set reaches 6 games all (default = TRUE)
-finalSetTiebreak | play a final set tiebreak if sets and games are tied, otherwise keep playing
-players | player names (vector of length 2)
-detail | return a detailed list about the match, including service probabilities, sets won, set data, games won, game data and result
-p2A | probability of player A winning point on their second serve
-firstServeA | probability of player A's first serve being in
-p2A | probability of player B winning point on their second serve
-firstServeB | probability of player B's first serve being in
+param | details | default
+------|---------|--------
+pA | probability of player A winning point on their first serve |
+pB | probability of player B winning point on their first serve |
+sets | number of sets (3 or 5) |
+tiebreaks | play tiebreaks in the event the set reaches 6 games all | `TRUE`
+finalSetTiebreak | play a final set tiebreak if sets and games are tied, otherwise keep playing | `FALSE`
+players | player names (vector of length 2) | c("A", "B")
+detail | return a detailed list about the match, including service probabilities, sets won, set data, games won, game data and result | `FALSE`
+p2A | probability of player A winning point on their second serve | `NULL`
+firstServeA | probability of player A's first serve being in | `NULL`
+p2A | probability of player B winning point on their second serve | `NULL`
+firstServeB | probability of player B's first serve being in | `NULL`
 
 ### Return
 
@@ -47,27 +47,51 @@ simMatch(sets = 3, finalSetTiebreak = TRUE,
          pA = .78, pB = .70,
          p2A = .56, firstServeA = .67,
          p2B = .6, firstServeB = .7)
+```
 
+Adding `detail = TRUE` will return a detailed list with data about the simulated match.
+
+```{r}
 egMatch <- simMatch(sets = 3, finalSetTiebreak = TRUE, detail = TRUE,
                     pA = .78, pB = .70,
                     p2A = .56, firstServeA = .67,
                     p2B = .6, firstServeB = .7)
 ```
-The object `egMatch` has a class of **`r class(egMatch)[2]`** which comes with a few methods
+The object `egMatch` has a class of **`r class(egMatch)[2]`** which comes with a print method
 
 ```{r}
 egMatch
 ```
 
-```{r echo=FALSE}
-df <- simDf(egMatch)
-```
+### Using `simDf`
 
-The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated match into a dataframe, containing data about each set played, and the games in each set.
+If the function is called with `detail = TRUE`, then the list returned can be converted into a dataset using the [simDf](simDf.html) function:
 
-```{r eval=FALSE}
-df <- simDf(egMatch)
-```
 ```{r}
+df <- simDf(egMatch)
 head(df)
 ```
+
+The dataset contains the following variables:
+
+variables | about
+----------|------
+playerA | player A (who started the match serving)
+playerB | player B (who started the match returning)
+mA | sets won by player A
+mB | sets won by player B
+result | match result, (1 if player A wins, 0 otherwise)
+setNo | set number
+pA | player A (who started the set serving)
+pB | player B (who started the set returning)
+setA | games won by player A
+setB | games won by player B
+set_res | set result (1 if player A wins, 0 if player B wins)
+gameNo | game number in set
+serving | player serving
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+game_res | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

@@ -180,6 +180,7 @@ img {
 <tr class="header">
 <th align="left">param</th>
 <th align="left">details</th>
+<th align="left">default</th>
 </tr>
 </thead>
 <tbody>
@@ -190,18 +191,22 @@ img {
 <tr class="even">
 <td align="left">p2</td>
 <td align="left">probability of server winning point on their second serve</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 <tr class="odd">
 <td align="left">firstServe</td>
 <td align="left">probability of first serve being in</td>
+<td align="left"><code>NULL</code></td>
 </tr>
 <tr class="even">
 <td align="left">detail</td>
 <td align="left">return a detailed list about the game, including service probabilities, points won, and result</td>
+<td align="left"><code>FALSE</code></td>
 </tr>
 <tr class="odd">
 <td align="left">player</td>
 <td align="left">player name</td>
+<td align="left">“A”</td>
 </tr>
 </tbody>
 </table>
@@ -217,7 +222,7 @@ img {
 <div id="example" class="section level3">
 <h3>Example</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a look at a detailed return</span>
 game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</code></pre>
 <p>The object <code>game</code> has a class of <strong>svR_game</strong> which comes with a few methods</p>
@@ -238,7 +243,7 @@ game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="
 ## Probability of Server (A) winning point:
 ##     p   p2 firstServe
 ##  0.78 0.56       0.67</code></pre>
-<p>To simulate many games, you can either use <code>replicate</code> or <a href="simGames.html">simGames</a></p>
+<p>To simulate many games, you can either use <code>replicate</code>, as shown below which is used with <code>detail = FALSE</code>, or <a href="simGames.html">simGames</a> which will return a detailed list with data about the simulated games, rather than just the result.</p>
 <pre class="sourceCode r"><code class="sourceCode r">game &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>))
 <span class="kw">head</span>(game)</code></pre>
 <pre><code>## [1] 1 1 1 1 1 1</code></pre>
@@ -246,7 +251,49 @@ game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="
 <span class="kw">table</span>(game) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(game))</code></pre>
 <pre><code>## game
 ##     0     1 
-## 0.082 0.918</code></pre>
+## 0.097 0.903</code></pre>
+</div>
+<div id="using-simdf" class="section level3">
+<h3>Using <code>simDf</code></h3>
+<p>If the function is called with <code>detail = TRUE</code>, then the list returned can be converted into a dataset using the <a href="simDf.html">simDf</a> function, producing a dataset containing the following variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variables</th>
+<th align="left">about</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">player</td>
+<td align="left">player name</td>
+</tr>
+<tr class="even">
+<td align="left">p</td>
+<td align="left">probability of server winning a point on their first serve</td>
+</tr>
+<tr class="odd">
+<td align="left">p2</td>
+<td align="left">probability of server winning a point on their second serve</td>
+</tr>
+<tr class="even">
+<td align="left">firstServe</td>
+<td align="left">probability of first serve being in</td>
+</tr>
+<tr class="odd">
+<td align="left">result</td>
+<td align="left">game result (1 if server wins, 0 if returner wins)</td>
+</tr>
+<tr class="even">
+<td align="left">server</td>
+<td align="left">number of points won by server in service game</td>
+</tr>
+<tr class="odd">
+<td align="left">returner</td>
+<td align="left">number of points won by returner in service game</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

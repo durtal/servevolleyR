@@ -15,13 +15,13 @@ simGame(p, p2 = NULL, firstServe = NULL, detail = FALSE, player = "A")
 
 ### Arguments
 
-param | details
-------|--------
-p | probability of server winning point on their first serve
-p2 | probability of server winning point on their second serve
-firstServe | probability of first serve being in
-detail | return a detailed list about the game, including service probabilities, points won, and result
-player | player name
+param | details | default
+------|---------|--------
+p | probability of server winning point on their first serve |
+p2 | probability of server winning point on their second serve | `NULL`
+firstServe | probability of first serve being in | `NULL`
+detail | return a detailed list about the game, including service probabilities, points won, and result | `FALSE`
+player | player name | "A"
 
 ### Return
 
@@ -46,7 +46,7 @@ game
 summary(game)
 ```
 
-To simulate many games, you can either use `replicate` or [simGames](simGames.html)
+To simulate many games, you can either use `replicate`, as shown below which is used with `detail = FALSE`, or [simGames](simGames.html) which will return a detailed list with data about the simulated games, rather than just the result.
 
 ```{r}
 game <- replicate(1e3, simGame(p = .78, p2 = .56, firstServe = .67))
@@ -54,3 +54,17 @@ head(game)
 # summarise results
 table(game) / sum(table(game))
 ```
+
+### Using `simDf`
+
+If the function is called with `detail = TRUE`, then the list returned can be converted into a dataset using the [simDf](simDf.html) function, producing a dataset containing the following variables:
+
+variables | about
+----------|------
+player | player name
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+result | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

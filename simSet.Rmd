@@ -53,9 +53,29 @@ egSet
 summary(egSet)
 ```
 
+### Using `simDf`
+
 If `detail = TRUE` then the list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated set into a dataframe.
 
 ```{r}
 df <- simDf(egSet)
 df
 ```
+
+The dataset contains the following variables:
+
+variables | about
+----------|------
+pA | player A
+pB | player B
+setA | games won by player A
+setB | games won by player B
+set_res | set result (1 if player A wins, 0 if player B wins)
+gameNo | game number in set
+serving | player serving
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+game_res | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

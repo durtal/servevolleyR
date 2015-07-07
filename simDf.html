@@ -181,8 +181,9 @@ img {
 <div id="usage" class="section level3">
 <h3>Usage</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simDf</span>(object)</code></pre>
-<p>When converting an object returned by <code>simGames</code>, <code>simSets</code> and <code>simMatches</code>, I’d recommend adding <code>plyr</code>’s progress bar, <code>.progress = &quot;text&quot;</code>, to <code>simDf</code> as large number of simulations will take a while to convert to a dataset.</p>
+<p>When converting an object returned by <code>simGames</code>, <code>simSets</code> and <code>simMatches</code>, I recommend adding <code>plyr</code>’s progress bar, <code>.progress = &quot;text&quot;</code>, to <code>simDf</code> as large number of simulations will take a while to convert to a dataset.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simDf</span>(object, <span class="dt">.progress =</span> <span class="st">&quot;time&quot;</span>)</code></pre>
+<hr>
 </div>
 <div id="simgame-and-simgames" class="section level2">
 <h2><code>simGame</code> and <code>simGames</code></h2>
@@ -193,16 +194,16 @@ egGames &lt;-<span class="st"> </span><span class="kw">simGames</span>(<span cla
 egGame &lt;-<span class="st"> </span><span class="kw">simDf</span>(egGame)
 <span class="kw">head</span>(egGame)</code></pre>
 <pre><code>##   player    p   p2 firstServe result server returner
-## 1      A 0.78 0.56       0.67      1      4        2</code></pre>
+## 1      A 0.78 0.56       0.67      1      4        1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">egGames &lt;-<span class="st"> </span><span class="kw">simDf</span>(egGames)
 <span class="kw">head</span>(egGames)</code></pre>
 <pre><code>##   simNo player    p   p2 firstServe result server returner
 ## 1     1      A 0.78 0.56       0.67      1      4        0
-## 2     2      A 0.78 0.56       0.67      0      2        4
-## 3     3      A 0.78 0.56       0.67      1      4        1
-## 4     4      A 0.78 0.56       0.67      1      4        2
-## 5     5      A 0.78 0.56       0.67      1      4        1
-## 6     6      A 0.78 0.56       0.67      1      4        0</code></pre>
+## 2     2      A 0.78 0.56       0.67      1      4        1
+## 3     3      A 0.78 0.56       0.67      1      5        3
+## 4     4      A 0.78 0.56       0.67      1      4        0
+## 5     5      A 0.78 0.56       0.67      1      9        7
+## 6     6      A 0.78 0.56       0.67      1      4        1</code></pre>
 <p>The variables in each dataset are effectively the same, except <code>simGames</code> dataset has a variable <strong>simNo</strong> to identify the unique simulations, a look at those variables:</p>
 <table>
 <thead>
@@ -246,6 +247,7 @@ egGame &lt;-<span class="st"> </span><span class="kw">simDf</span>(egGame)
 </tr>
 </tbody>
 </table>
+<hr>
 </div>
 <div id="simset-and-simsets" class="section level2">
 <h2><code>simSet</code> and <code>simSets</code></h2>
@@ -259,35 +261,35 @@ egSets &lt;-<span class="st"> </span><span class="kw">simSets</span>(<span class
 egSet &lt;-<span class="st"> </span><span class="kw">simDf</span>(egSet)
 <span class="kw">head</span>(egSet)</code></pre>
 <pre><code>##   pA pB setA setB set_res gameNo serving    p   p2 firstServe game_res
-## 1  A  B    4    6       0      1       A 0.78 0.56       0.67        0
-## 2  A  B    4    6       0      2       B 0.70 0.60       0.70        1
-## 3  A  B    4    6       0      3       A 0.78 0.56       0.67        1
-## 4  A  B    4    6       0      4       B 0.70 0.60       0.70        1
-## 5  A  B    4    6       0      5       A 0.78 0.56       0.67        1
-## 6  A  B    4    6       0      6       B 0.70 0.60       0.70        1
+## 1  A  B    7    6       1      1       A 0.78 0.56       0.67        1
+## 2  A  B    7    6       1      2       B 0.70 0.60       0.70        1
+## 3  A  B    7    6       1      3       A 0.78 0.56       0.67        1
+## 4  A  B    7    6       1      4       B 0.70 0.60       0.70        1
+## 5  A  B    7    6       1      5       A 0.78 0.56       0.67        1
+## 6  A  B    7    6       1      6       B 0.70 0.60       0.70        1
 ##   server returner
-## 1      0        4
-## 2      4        1
-## 3      4        0
-## 4      5        3
-## 5      4        0
-## 6      4        2</code></pre>
+## 1      4        1
+## 2      4        0
+## 3      6        4
+## 4      4        2
+## 5      4        2
+## 6      5        3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">egSets &lt;-<span class="st"> </span><span class="kw">simDf</span>(egSets)
 <span class="kw">head</span>(egSets)</code></pre>
 <pre><code>##   simNo pA pB setA setB set_res gameNo serving    p   p2 firstServe
-## 1     1  A  B    6    7       0      1       A 0.78 0.56       0.67
-## 2     1  A  B    6    7       0      2       B 0.70 0.60       0.70
-## 3     1  A  B    6    7       0      3       A 0.78 0.56       0.67
-## 4     1  A  B    6    7       0      4       B 0.70 0.60       0.70
-## 5     1  A  B    6    7       0      5       A 0.78 0.56       0.67
-## 6     1  A  B    6    7       0      6       B 0.70 0.60       0.70
+## 1     1  A  B    7    5       1      1       A 0.78 0.56       0.67
+## 2     1  A  B    7    5       1      2       B 0.70 0.60       0.70
+## 3     1  A  B    7    5       1      3       A 0.78 0.56       0.67
+## 4     1  A  B    7    5       1      4       B 0.70 0.60       0.70
+## 5     1  A  B    7    5       1      5       A 0.78 0.56       0.67
+## 6     1  A  B    7    5       1      6       B 0.70 0.60       0.70
 ##   game_res server returner
-## 1        1      7        5
-## 2        1      4        1
-## 3        1      4        0
-## 4        1      4        1
-## 5        1      4        1
-## 6        1      4        1</code></pre>
+## 1        1      4        0
+## 2        1      4        0
+## 3        0      2        4
+## 4        0      2        4
+## 5        1      4        0
+## 6        1      4        2</code></pre>
 <p>The variables in each dataset are similar to those found in the returned datasets from <code>simGame</code> and <code>simGames</code>, a look at those variables:</p>
 <table>
 <thead>
@@ -355,6 +357,7 @@ egSet &lt;-<span class="st"> </span><span class="kw">simDf</span>(egSet)
 </tr>
 </tbody>
 </table>
+<hr>
 </div>
 <div id="simmatch-and-simmatches" class="section level2">
 <h2><code>simMatch</code> and <code>simMatches</code></h2>
@@ -371,35 +374,35 @@ egMatches &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span
 egMatch &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatch)
 <span class="kw">head</span>(egMatch)</code></pre>
 <pre><code>##   playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1       A       B  2  1      1     1  A  B    6    3       1      1
-## 2       A       B  2  1      1     1  A  B    6    3       1      2
-## 3       A       B  2  1      1     1  A  B    6    3       1      3
-## 4       A       B  2  1      1     1  A  B    6    3       1      4
-## 5       A       B  2  1      1     1  A  B    6    3       1      5
-## 6       A       B  2  1      1     1  A  B    6    3       1      6
+## 1       A       B  2  1      1     1  A  B    4    6       0      1
+## 2       A       B  2  1      1     1  A  B    4    6       0      2
+## 3       A       B  2  1      1     1  A  B    4    6       0      3
+## 4       A       B  2  1      1     1  A  B    4    6       0      4
+## 5       A       B  2  1      1     1  A  B    4    6       0      5
+## 6       A       B  2  1      1     1  A  B    4    6       0      6
 ##   serving    p   p2 firstServe game_res server returner
-## 1       A 0.78 0.56       0.67        1      4        0
-## 2       B 0.70 0.60       0.70        0      1        4
-## 3       A 0.78 0.56       0.67        1      4        0
-## 4       B 0.70 0.60       0.70        1      4        0
-## 5       A 0.78 0.56       0.67        1      4        0
+## 1       A 0.78 0.56       0.67        1      4        1
+## 2       B 0.70 0.60       0.70        1      4        2
+## 3       A 0.78 0.56       0.67        0      2        4
+## 4       B 0.70 0.60       0.70        1      4        1
+## 5       A 0.78 0.56       0.67        1      4        2
 ## 6       B 0.70 0.60       0.70        1      4        1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">egMatches &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatches)
 <span class="kw">head</span>(egMatches)</code></pre>
 <pre><code>##   simNo playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1     1       A       B  0  2      0     1  A  B    4    6       0      1
-## 2     1       A       B  0  2      0     1  A  B    4    6       0      2
-## 3     1       A       B  0  2      0     1  A  B    4    6       0      3
-## 4     1       A       B  0  2      0     1  A  B    4    6       0      4
-## 5     1       A       B  0  2      0     1  A  B    4    6       0      5
-## 6     1       A       B  0  2      0     1  A  B    4    6       0      6
+## 1     1       A       B  1  2      0     1  A  B    6    3       1      1
+## 2     1       A       B  1  2      0     1  A  B    6    3       1      2
+## 3     1       A       B  1  2      0     1  A  B    6    3       1      3
+## 4     1       A       B  1  2      0     1  A  B    6    3       1      4
+## 5     1       A       B  1  2      0     1  A  B    6    3       1      5
+## 6     1       A       B  1  2      0     1  A  B    6    3       1      6
 ##   serving    p   p2 firstServe game_res server returner
-## 1       A 0.78 0.56       0.67        1      4        2
-## 2       B 0.70 0.60       0.70        1      4        2
-## 3       A 0.78 0.56       0.67        1      7        5
-## 4       B 0.70 0.60       0.70        1      4        0
+## 1       A 0.78 0.56       0.67        1      4        1
+## 2       B 0.70 0.60       0.70        0      3        5
+## 3       A 0.78 0.56       0.67        1      4        0
+## 4       B 0.70 0.60       0.70        1      4        1
 ## 5       A 0.78 0.56       0.67        1      4        0
-## 6       B 0.70 0.60       0.70        1      5        3</code></pre>
+## 6       B 0.70 0.60       0.70        1      4        1</code></pre>
 <p>The variables in each dataset are similar to those found in the returned datasets from <code>simSet</code>, <code>simSets</code>, <code>simGame</code> and <code>simGames</code>, a look at those variables:</p>
 <table>
 <thead>

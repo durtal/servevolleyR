@@ -58,16 +58,36 @@ summary(egMatches)
 plot(egMatches)
 ```
 
-```{r echo=FALSE}
-df <- simDf(egMatches)
-head(df)
-```
+### Using `simMatches`
 
-The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated matches into a dataframe, containing data about each of the simulations, including data going all the way down to the individual games.  `egMatches` contains **100** simulations, which produces a dataset of dimensions `r dim(egMatches)`.
+The returned list can also be entered into the function [`simDf`](simDf.html) which will convert the simulated matches into a dataset, containing data about each of the simulations, including data going all the way down to the individual games.  `egMatches`, created above, contains **100** simulations, which produces a dataset of dimensions `r dim(egMatches)`, each simulation will produce a different sized dataset, a large number of simulations will obviously produce a much larger dataset, and will take longer for `simDf` to create the dataset.
 
-```{r eval=FALSE}
-df <- simDf(egMatches)
-```
 ```{r}
+df <- simDf(egMatches)
 head(df)
 ```
+
+The dataset contains the following variables:
+
+variables | about
+----------|------
+simNo | simulation number
+playerA | player A (who started the match serving)
+playerB | player B (who started the match returning)
+mA | sets won by player A
+mB | sets won by player B
+result | match result, (1 if player A wins, 0 otherwise)
+setNo | set number
+pA | player A (who started the set serving)
+pB | player B (who started the set returning)
+setA | games won by player A
+setB | games won by player B
+set_res | set result (1 if player A wins, 0 if player B wins)
+gameNo | game number in set
+serving | player serving
+p | probability of server winning a point on their first serve
+p2 | probability of server winning a point on their second serve
+firstServe | probability of first serve being in
+game_res | game result (1 if server wins, 0 if returner wins)
+server | number of points won by server in service game
+returner | number of points won by returner in service game

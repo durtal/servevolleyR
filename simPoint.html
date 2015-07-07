@@ -205,14 +205,14 @@ img {
 <div id="example" class="section level3">
 <h3>Example</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 1</code></pre>
 <p>Use <code>replicate</code> to simulate many points:</p>
 <pre class="sourceCode r"><code class="sourceCode r">pts &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>))
 <span class="co"># summarise results</span>
 <span class="kw">table</span>(pts) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(pts))</code></pre>
 <pre><code>## pts
 ##     0     1 
-## 0.282 0.718</code></pre>
+## 0.279 0.721</code></pre>
 </div>
 
 

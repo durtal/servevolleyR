@@ -23,11 +23,14 @@ and converts them into a dataset with meta data about players, points, games, an
 simDf(object)
 ```
 
-When converting an object returned by `simGames`, `simSets` and `simMatches`, I'd recommend adding `plyr`'s progress bar, `.progress = "text"`, to `simDf` as large number of simulations will take a while to convert to a dataset.
+When converting an object returned by `simGames`, `simSets` and `simMatches`, I recommend adding `plyr`'s progress bar, `.progress = "text"`, to `simDf` as large number of simulations will take a while to convert to a dataset.
 
 ```{r eval=FALSE}
 simDf(object, .progress = "time")
 ```
+
+<hr>
+
 ## `simGame` and `simGames`
 
 A look at the dataset returned by `simGame` and `simGames`, only small number of simulations
@@ -54,6 +57,8 @@ firstServe | probability of first serve being in
 result | game result (1 if server wins, 0 if returner wins)
 server | number of points won by server in service game
 returner | number of points won by returner in service game
+
+<hr>
 
 ## `simSet` and `simSets`
 
@@ -91,6 +96,8 @@ firstServe | probability of first serve being in
 game_res | game result (1 if server wins, 0 if returner wins)
 server | number of points won by server in service game
 returner | number of points won by returner in service game
+
+<hr>
 
 ## `simMatch` and `simMatches`
 
