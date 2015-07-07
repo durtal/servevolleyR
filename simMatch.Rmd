@@ -61,6 +61,7 @@ The object `egMatch` has a class of **`r class(egMatch)[2]`** which comes with a
 
 ```{r}
 egMatch
+summary(egMatch)
 ```
 
 ### Using `simDf`
