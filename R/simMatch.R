@@ -169,7 +169,7 @@ summary.svR_match <- function(x) {
                           set = c(object$sets[[s]]$set$playerA,
                                   object$sets[[s]]$set$playerB))
         names(tmp) <- c("player", paste0("set", s))
-        df <- merge(results, tmp, by = "player")
+        results <- merge(results, tmp, by = "player")
     }
 
     probs <- rbind(data.frame(object$probs$playerA), data.frame(object$probs$playerB))
