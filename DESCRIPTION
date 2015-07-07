@@ -12,4 +12,5 @@ License: MIT
 LazyData: TRUE
 Imports:
     plyr,
-    ggplot2
+    ggplot2,
+    shiny
