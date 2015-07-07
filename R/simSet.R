@@ -1,8 +1,7 @@
-#' simulate a set between two players
+#' simSet
 #'
-#' @description simulate a set between two players given a number of parameters,
-#' that include probability of each player winning a point on their first serve,
-#' on their second serve, and the probability that their first serve will go in.
+#' @description simulate a set between two players, using the probability each will
+#' win a point on their serve
 #'
 #' @param pA probability of player A winning point on their first serve
 #' @param pB probability of player B winning point on their first serve
@@ -13,6 +12,12 @@
 #' @param firstServeA probability of player A getting their first serve in
 #' @param p2B probability of player B winning point on their second serve
 #' @param firstServeB probability of player B getting their first serve in
+#'
+#' @return 1 (if player A wins), 0 (if player B wins). If the parameter \strong{detail}
+#' is set to TRUE, then the function will returna detailed list about the simulated
+#' set, including data about the indvidual games in that set.  This list can be
+#' converted to a dataframe using \link{simDf}. See \link{simSets} for simulating
+#' many sets between the two players
 #'
 #' @details minimum input required is the probability that each player will win
 #' a point on their serve, however additional parameters include probability
@@ -203,9 +208,10 @@ summary.svR_set <- function(x) {
     print(probs, row.names = FALSE)
 }
 
-#' simSets - simulate many sets between two players
+#' simSets
 #'
-#' @description simulate many sets between two players
+#' @description simulate many sets between two players, given the probability of
+#' each player winning a point on their serve
 #'
 #' @param n number of simulations, default of 1000
 #' @param pA probability of player A winning point on their first serve
@@ -217,6 +223,10 @@ summary.svR_set <- function(x) {
 #' @param p2B probability of player B winning point on their second serve
 #' @param firstServeB probability of player B getting their first serve in
 #' @param .progress \link{plyr}'s progress bar
+#'
+#' @return The function returns a large list, which can be printed, summarised, or
+#' plotted. It can also be converted to a dataframe using \link{simDf}, which contains
+#' data about the simulated sets, and games, within each simulation.
 #'
 #' @details minimum input required is the probability that each player will win
 #' a point on their serve, however additional parameters include probability

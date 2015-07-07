@@ -1,6 +1,7 @@
 #' simMatch
 #'
-#' @description simulate a match between two players
+#' @description simulate a match between two players, given the probability of each
+#' player winning a point on their serve
 #'
 #' @param pA probability of player A winning point on their serve
 #' @param pB probability of player B winning point on their serve
@@ -13,6 +14,17 @@
 #' @param firstServeA probability of player A getting their first serve in
 #' @param p2B probability of player B winning point on their second serve
 #' @param firstServeB probability of player B getting their first serve in
+#'
+#' @return 1 (if player A wins) or 0 (if player B wins). If the parameter \strong{detail}
+#' is set to TRUE, then the function will return a detailed list about the simulated
+#' match, including data about the indvidual sets and games in the match.  This list can
+#' be converted to a dataframe using \link{simDf}. See \link{simMatches} for simulating
+#' many sets between the two players.
+#'
+#' @details minimum input required is the probability that each player will win
+#' a point on their serve, however additional parameters include probability
+#' of each player winning a point on their second serve, the probability of a
+#' players first serve being in, number of sets whether they play a tiebreak
 #'
 #' @export
 simMatch <- function(pA, pB, sets = c(3, 5), tiebreaks = TRUE, finalSetTiebreak = FALSE,
@@ -170,7 +182,8 @@ summary.svR_match <- function(x) {
 
 #' simMatches
 #'
-#' @description simulate a set between two players
+#' @description simulate many matches between two players, given the probability of
+#' each player winning a point on their serve
 #'
 #' @param n number of simulations, default 1000
 #' @param pA probability of player A winning point on their serve
@@ -185,6 +198,19 @@ summary.svR_match <- function(x) {
 #' @param p2B probability of player B winning point on their second serve
 #' @param firstServeB probability of player B getting their first serve in
 #' @param .progress \link{plyr}'s progress bar
+#'
+#' @return The function returns a large list, which can be printed, summarised, or plotted,
+#' it can also be converted to a dataframe using \link{simDf}, which contains data
+#' about the simulated sets, and games, within each simulation
+#'
+#' @details minimum input required is the probability that each player will win
+#' a point on their serve, however additional parameters include probability
+#' of each player winning a point on their second serve, the probability of a
+#' players first serve being in, number of sets whether they play a tiebreak
+#'
+#' If the parameter \strong{detail} is set to TRUE, then the function will return
+#' a detailed list about the simulated match, including data about the indvidual sets
+#' and games in the match.  This list can be converted to a dataframe using \link{simDf}. See
 #'
 #' @export
 simMatches <- function(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE, finalSetTiebreak = FALSE,

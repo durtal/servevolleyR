@@ -1,10 +1,12 @@
-#' Simulate a server winning a point
+#' simPoint
 #'
 #' @description simulate probability of server winning a point
 #'
 #' @param p probability of server winning point on their first serve
 #' @param p2 probability of server winning point on their second serve
 #' @param firstServe probability of first serve being in
+#'
+#' @return 1 (if server wins), 0 (if returner wins)
 #'
 #' @export
 simPoint <- function(p, p2 = NULL, firstServe = NULL) {

@@ -36,7 +36,23 @@ simMatches(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE,
 
 \item{detail}{return detailed data for the Match, default FALSE}
 }
+\value{
+The function returns a large list, which can be printed, summarised, or plotted,
+it can also be converted to a dataframe using \link{simDf}, which contains data
+about the simulated sets, and games, within each simulation
+}
 \description{
-simulate a set between two players
+simulate many matches between two players, given the probability of
+each player winning a point on their serve
+}
+\details{
+minimum input required is the probability that each player will win
+a point on their serve, however additional parameters include probability
+of each player winning a point on their second serve, the probability of a
+players first serve being in, number of sets whether they play a tiebreak
+
+If the parameter \strong{detail} is set to TRUE, then the function will return
+a detailed list about the simulated match, including data about the indvidual sets
+and games in the match.  This list can be converted to a dataframe using \link{simDf}. See
 }
 

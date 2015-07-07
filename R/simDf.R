@@ -1,10 +1,12 @@
 #' simDf
 #'
 #' @description convert simulated games, sets and matches into useful dataframes
+#' for further analysis
 #'
-#' @param sim list returned by \link{simGames}, \link{simSets} or \link{simMatches}
+#' @param sim detailed list returned by one of the following functions \link{simGame}
+#' \link{simGames}, \link{simSet}, \link{simSets}, \link{simMatch} or \link{simMatches}
 #' @param ... recommend adding \link{plyr}'s .progress when using \link{simGames},
-#' \link{simSets} or \link{simSets} to view progress at processing results.
+#' \link{simSets} or \link{simMatches} to view progress at processing results.
 #'
 #' @export
 simDf <- function(x, ...) {

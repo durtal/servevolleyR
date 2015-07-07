@@ -2,7 +2,7 @@
 % Please edit documentation in R/simSet.R
 \name{simSet}
 \alias{simSet}
-\title{simulate a set between two players}
+\title{simSet}
 \usage{
 simSet(pA, pB, playTiebreak = TRUE, players = c("A", "B"), detail = FALSE,
   p2A = NULL, firstServeA = NULL, p2B = NULL, firstServeB = NULL)
@@ -26,10 +26,16 @@ simSet(pA, pB, playTiebreak = TRUE, players = c("A", "B"), detail = FALSE,
 
 \item{firstServeB}{probability of player B getting their first serve in}
 }
+\value{
+1 (if player A wins), 0 (if player B wins). If the parameter \strong{detail}
+is set to TRUE, then the function will returna detailed list about the simulated
+set, including data about the indvidual games in that set.  This list can be
+converted to a dataframe using \link{simDf}. See \link{simSets} for simulating
+many sets between the two players
+}
 \description{
-simulate a set between two players given a number of parameters,
-that include probability of each player winning a point on their first serve,
-on their second serve, and the probability that their first serve will go in.
+simulate a set between two players, using the probability each will
+win a point on their serve
 }
 \details{
 minimum input required is the probability that each player will win

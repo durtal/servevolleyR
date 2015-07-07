@@ -2,7 +2,7 @@
 % Please edit documentation in R/simGame.R
 \name{simGame}
 \alias{simGame}
-\title{Simulate a server winning a game}
+\title{simGame}
 \usage{
 simGame(p, p2 = NULL, firstServe = NULL, detail = FALSE, player = "A")
 }
@@ -18,14 +18,19 @@ server wins, 0 otherwise}
 
 \item{player}{player name, default is "A"}
 }
+\value{
+1 (if server wins), 0 (if returner wins).  If the parameter \strong{detail}
+is set to TRUE, then the function will return a detailed list about the simulated
+game, see \link{simGames} for more about simulating many games for a single server.
+This detailed list can be converted into a dataframe using \link{simDf}
+}
 \description{
-simulate probability of a server winning a game given a number of
-parameters, that include probability of server winning a point on their first
-serve, their second serve, and probability of their first serve going in.
+simulate probability of a server winning a game given the probability
+they win a point on their serve
 }
 \details{
-if the parameter \strong{detail} is set to TRUE, then the function
-will return a detailed list about the simulated game, see \link{simGames} for
-more about simulating many games for a single server
+a couple of additional parameters can be supplied: the probability of
+the server winning a point on their second serve and probability of their first
+serve going in.
 }
 

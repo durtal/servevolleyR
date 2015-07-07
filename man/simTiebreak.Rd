@@ -20,6 +20,9 @@ simTiebreak(pA, pB, p2A = NULL, firstServeA = NULL, p2B = NULL,
 
 \item{firstServeB}{probability of player B getting their first serve in}
 }
+\value{
+1 (if player A wins), 0 (if player B wins)
+}
 \description{
 simulate a tiebreak between two players
 }

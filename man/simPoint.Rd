@@ -2,7 +2,7 @@
 % Please edit documentation in R/simPoint.R
 \name{simPoint}
 \alias{simPoint}
-\title{Simulate a server winning a point}
+\title{simPoint}
 \usage{
 simPoint(p, p2 = NULL, firstServe = NULL)
 }
@@ -12,6 +12,9 @@ simPoint(p, p2 = NULL, firstServe = NULL)
 \item{p2}{probability of server winning point on their second serve}
 
 \item{firstServe}{probability of first serve being in}
+}
+\value{
+1 (if server wins), 0 (if returner wins)
 }
 \description{
 simulate probability of server winning a point

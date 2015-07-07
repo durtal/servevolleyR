@@ -2,7 +2,7 @@
 % Please edit documentation in R/simSet.R
 \name{simSets}
 \alias{simSets}
-\title{simSets - simulate many sets between two players}
+\title{simSets}
 \usage{
 simSets(n = 1000, pA, pB, playTiebreak = TRUE, players = c("A", "B"),
   p2A = NULL, firstServeA = NULL, p2B = NULL, firstServeB = NULL,
@@ -29,8 +29,14 @@ simSets(n = 1000, pA, pB, playTiebreak = TRUE, players = c("A", "B"),
 
 \item{.progress}{\link{plyr}'s progress bar}
 }
+\value{
+The function returns a large list, which can be printed, summarised, or
+plotted. It can also be converted to a dataframe using \link{simDf}, which contains
+data about the simulated sets, and games, within each simulation.
+}
 \description{
-simulate many sets between two players
+simulate many sets between two players, given the probability of
+each player winning a point on their serve
 }
 \details{
 minimum input required is the probability that each player will win

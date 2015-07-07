@@ -9,6 +9,8 @@
 #' @param p2B probability of player B winning point on their second serve
 #' @param firstServeB probability of player B getting their first serve in
 #'
+#' @return 1 (if player A wins), 0 (if player B wins)
+#'
 #' @export
 simTiebreak <- function(pA, pB, p2A = NULL, firstServeA = NULL, p2B = NULL, firstServeB = NULL) {
     # player points

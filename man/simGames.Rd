@@ -2,7 +2,7 @@
 % Please edit documentation in R/simGame.R
 \name{simGames}
 \alias{simGames}
-\title{simulate many Games}
+\title{simGames}
 \usage{
 simGames(n = 1000, p, p2 = NULL, firstServe = NULL, player = "A",
   .progress = "none")
@@ -20,8 +20,15 @@ simGames(n = 1000, p, p2 = NULL, firstServe = NULL, player = "A",
 
 \item{.progress}{\link{plyr}'s progress bar}
 }
+\value{
+The function returns a large list, which can be printed, summarised, or
+plotted. It can also be converted to a dataframe using \link{simDf}, which contains
+data about the simulated sets, and games, within each simulation.
+}
 \description{
-simulate many service games for a single server
+simulate many service games for a single server, given a number of
+parameters, that include probability of server winning a point on their first
+serve, their second serve, and probability of their first serve going in.
 }
 \details{
 adding a parameter ("text", or "time") to the .progress argument will

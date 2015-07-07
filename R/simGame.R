@@ -1,8 +1,7 @@
-#' Simulate a server winning a game
+#' simGame
 #'
-#' @description simulate probability of a server winning a game given a number of
-#' parameters, that include probability of server winning a point on their first
-#' serve, their second serve, and probability of their first serve going in.
+#' @description simulate probability of a server winning a game given the probability
+#' they win a point on their serve
 #'
 #' @param p probability of server winning point on their first serve
 #' @param p2 probability of server winning point on their second serve
@@ -11,9 +10,14 @@
 #' server wins, 0 otherwise
 #' @param player player name, default is "A"
 #'
-#' @details if the parameter \strong{detail} is set to TRUE, then the function
-#' will return a detailed list about the simulated game, see \link{simGames} for
-#' more about simulating many games for a single server
+#' @return 1 (if server wins), 0 (if returner wins).  If the parameter \strong{detail}
+#' is set to TRUE, then the function will return a detailed list about the simulated
+#' game, see \link{simGames} for more about simulating many games for a single server.
+#' This detailed list can be converted into a dataframe using \link{simDf}
+#'
+#' @details a couple of additional parameters can be supplied: the probability of
+#' the server winning a point on their second serve and probability of their first
+#' serve going in.
 #'
 #' @export
 simGame <- function(p, p2 = NULL, firstServe = NULL, detail = FALSE, player = "A") {
@@ -98,9 +102,11 @@ summary.svR_game <- function(x, ...) {
     print(server, row.names = FALSE)
 }
 
-#' simulate many Games
+#' simGames
 #'
-#' @description simulate many service games for a single server
+#' @description simulate many service games for a single server, given a number of
+#' parameters, that include probability of server winning a point on their first
+#' serve, their second serve, and probability of their first serve going in.
 #'
 #' @param n number of games to simulate (default, 1000)
 #' @param p probability of server winning a point on the first serve
@@ -108,6 +114,10 @@ summary.svR_game <- function(x, ...) {
 #' @param firstServe probability of first serve being in
 #' @param player player name, default is "A"
 #' @param .progress \link{plyr}'s progress bar
+#'
+#' @return  The function returns a large list, which can be printed, summarised, or
+#' plotted. It can also be converted to a dataframe using \link{simDf}, which contains
+#' data about the simulated sets, and games, within each simulation.
 #'
 #' @details adding a parameter ("text", or "time") to the .progress argument will
 #' cause two progress bars to show up, one after another, the first charts the
