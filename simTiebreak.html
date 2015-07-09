@@ -158,6 +158,15 @@ img {
 						</li>
 					</ul>
 				</li>
+				<li class="dropdown">
+				    <a href="vignettes" class="dropdown-toggle" data-toggle="dropdown">Vignettes <b class="caret"></b></a>
+				    <ul class="dropdown-menu">
+				        <li class="dropdown-header">Wimbledon 2015</li>
+				        <li>
+				            <a href="williams-sharapova.html">Williams vs Sharapova</a>
+				        </li>
+				    </ul>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -218,13 +227,13 @@ img {
 <div id="example" class="section level3">
 <h3>Example</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simTiebreak</span>(<span class="dt">pA =</span> .<span class="dv">76</span>, <span class="dt">pB =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># simulate many tiebreaks</span>
 tiebreak &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simTiebreak</span>(<span class="dt">pA =</span> .<span class="dv">76</span>, <span class="dt">pB =</span> .<span class="dv">67</span>))
 <span class="kw">table</span>(tiebreak) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(tiebreak))</code></pre>
 <pre><code>## tiebreak
 ##     0     1 
-## 0.321 0.679</code></pre>
+## 0.354 0.646</code></pre>
 </div>
 
 
