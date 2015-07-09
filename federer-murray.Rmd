@@ -1,0 +1,172 @@
+---
+title: "Wimbledon 2015"
+---
+
+### Federer vs Murray
+
+Today Andy Murray faces Roger Federer in the semi-final of Wimbledon 2015.  This post will, like the [Williams vs Sharapova](williams-sharapova.html) from yesterday, look at some of the functionality of the package, focussing on [`simMatches`](simMatches.html) and [`simDf`](simDf.html).
+
+Make sure the package is installed and loaded...
+
+```{r warning=FALSE, message=FALSE}
+# devtools::install_github("durtal/servevolleyR")
+library(servevolleyR)
+```
+
+We need to estimate the probability that each player will win a point on his first serve, second serve, and the probability that his first serve will be in.  To do this, the simplest way is to use serve statistics shown on each of the players ATP pages, [Federer](http://www.atpworldtour.com/en/players/roger-federer/f324/player-stats?year=2015&surfaceType=grass) and [Murray](http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats?year=2015&surfaceType=grass), filtered to this year, and played on grass, Federer has 59 service games, and Murray 57.
+
+```{r}
+federer1 <- .83    # federer first serve win %
+federer2 <- .51    # federer second serve win %
+federerIn <- .70   # federer first serve in %
+
+murray1 <- .81     # murray first serve win %
+murray2 <- .57     # murray second serve win %
+murrayIn <- .67    # murray first serve in %
+```
+
+First a couple of plots that look at each players service games:
+
+<div class="row">
+<div class="col-sm-6">
+
+<h3 style="text-align: center">Federer</h3>
+
+```{r cache=TRUE}
+federerGames <- simGames(n = 1e4,
+                         p = federer1,
+                         p2 = federer2,
+                         firstServe = federerIn)
+
+federerGames
+```
+
+Federer won **`r federerGames$results$pct`** of his service games, in 2015 (according to the link above) he actually won **0.97** of service games.  The score in each of the simulated service games is plotted below.
+
+```{r}
+plot(federerGames)
+```
+
+</div>
+<div class="col-sm-6">
+
+<h3 style="text-align: center">Murray</h3>
+
+```{r cache=TRUE}
+murrayGames <- simGames(n = 1e4,
+                        p = murray1,
+                        p2 = murray2,
+                        firstServe = murrayIn)
+
+murrayGames
+```
+
+Murray won **`r murrayGames$results$pct`** of his service games, in 2015 (according to the link above) he actually won **0.91** of service games.  The score in each of the simulated service games is plotted below.
+
+```{r}
+plot(murrayGames)
+```
+
+</div>
+</div>
+
+### `simMatches`
+
+Rather than simulate sets as well, I'll jump straight to [`simMatches`](simMatches.html) and simulate 1000 matches between Federer and Murray.  It is followed by a summary of those 1000 matches on the left, and a plot on the right, showing the match scores.
+
+```{r cache=TRUE}
+fedmur <- simMatches(n = 1e3, sets = 5, tiebreaks = TRUE, finalSetTiebreak = TRUE,
+                     pA = federer1, p2A = federer2, firstServeA = federerIn,
+                     pB = murray1, p2B = murray2, firstServeB = murrayIn,
+                     players = c("Federer", "Murray"))
+```
+
+<div class="row">
+<div class="col-sm-6">
+
+Federer wins **`r fedmur$results$pct`** of matches between the two.  Prices on Betfair put Federer's chance of winning at 0.47.
+
+```{r}
+summary(fedmur)
+```
+
+</div>
+<div class="col-sm-6">
+
+```{r}
+plot(fedmur)
+```
+
+</div>
+</div>
+
+Using `simMatches` means that each simulated set has at least 3 simulated sets, and at most 5 simulated sets.  So 1000 Match simulations contains between 3000 and 5000 simulated sets.  Following that, each set will have been 6 and 12 simulated service games, this means that there is a huge amount of simulated data.  This data can be converted to a dataset using the [`simDf`](simDf.html) function, it can take some time to convert the list, so be patient.  `simDf` only takes one set argument, the list returned by `simMatches`, but supplying `.progress = "time"` will add `plyr`'s progress bar to show how long it should take (I won't add it here, but I will time the conversion).
+
+```{r cache=TRUE}
+start <- Sys.time()
+fedmurDf <- simDf(fedmur)
+finish <- Sys.time()
+```
+
+Converting this list took **`r diff(c(start, finish))`** minutes, showing that it can take some time, more simulations, the longer it takes, but we now have a dataset of **`r nrow(fedmurDf)`** rows and **`r ncol(fedmurDf)`** variables, explanation of these variables can be found at the bottom of the [`simMatches`](simMatches.html) page.
+
+### Enter the `dplyr`
+
+For manipulation of datasets, then `dplyr` is the best choice, and we'll use `ggplot2` for plotting.  Below we load the `dplyr` and `ggplot2` packages and filter the first set in the first simulation: the set ended in a tiebreak (`gameNo` goes up to 13), with Murray emerging as the winner of the set 7-6.
+
+```{r warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+
+fedmurDf %>%
+    filter(simNo == 1, setNo == 1)
+```
+
+We can use this dataset to establish the probability of set scores, depending on who opens the serving:
+
+```{r}
+setSummary <- fedmurDf %>%
+    filter(gameNo == 1) %>%            # filter just gameNo == 1
+    group_by(serving, setA, setB) %>%  # who serves first, and what were the scores
+    summarise(n = n()) %>%             # count how many
+    ungroup() %>%
+    group_by(serving) %>% 
+    mutate(pct = n / sum(n))           # calculate proportion
+```
+
+Given their very similar service probabilities it's unsurprising to see set scores so tight, with a tiebreak estimated at around 0.5 regardless of who opens the serving.
+
+<div class="row">
+<div class="col-sm-6">
+
+```{r echo=FALSE}
+setSummary %>%
+    filter(serving == "Federer") %>%
+    ggplot(aes(x = setA, y = setB, fill = pct)) +
+        geom_tile() +
+        scale_fill_continuous(low = "lightblue", high = "#E50023", guide = FALSE) +
+        geom_text(aes(label = round(pct, 3)), size = 4) +
+        theme_minimal() +
+        labs(x = paste0("Federer Games Won"),
+             y = paste0("Murray Games Won"),
+             title = paste0("Federer Serving First\nSet Scores"))
+```
+
+</div>
+<div class="col-sm-6">
+
+```{r echo=FALSE}
+setSummary %>%
+    filter(serving == "Murray") %>%
+    ggplot(aes(x = setA, y = setB, fill = pct)) +
+        geom_tile() +
+        scale_fill_continuous(low = "lightblue", high = "#E50023", guide = FALSE) +
+        geom_text(aes(label = round(pct, 3)), size = 4) +
+        theme_minimal() +
+        labs(x = paste0("Murray Games Won"),
+             y = paste0("Federer Games Won"),
+             title = paste0("Murray Serving First\nSet Scores"))
+```
+
+</div>
+</div>

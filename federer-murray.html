@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Wimbledon 2015</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+p{
+  font-size: 13px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<h1>servevolleyR</h1>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://durtal.github.io/">durtal.github.io</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li class="dropdown">
+					<a href="Datasets" class="dropdown-toggle" data-toggle="dropdown">
+						Functions <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Simulation</li>
+						<li>
+							<a href="simPoint.html">simPoint</a>
+						</li>
+                        <li>
+                        	<a href="simGame.html">simGame</a>
+                        </li>
+						<li>
+							<a href="simTiebreak.html">simTiebreak</a>
+						</li>
+						<li>
+							<a href="simSet.html">simSet</a>
+						</li>
+						<li>
+							<a href="simMatch.html">simMatch</a>
+						</li>
+						<li class="dropdown-header">Simulation<strong>s</strong></li>
+						<li>
+							<a href="simGames.html">simGames</a>
+						</li>
+						<li>
+							<a href="simSets.html">simSets</a>
+						</li>
+						<li>
+							<a href="simMatches.html">simMatches</a>
+						</li>
+						<li class="dropdown-header">Other</li>
+						<li>
+							<a href="simDf.html">simDf</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+				    <a href="vignettes" class="dropdown-toggle" data-toggle="dropdown">Vignettes <b class="caret"></b></a>
+				    <ul class="dropdown-menu">
+				        <li class="dropdown-header">Wimbledon 2015</li>
+				        <li>
+				            <a href="williams-sharapova.html">Williams vs Sharapova</a>
+				        </li>
+				        <li>
+				            <a href="federer-murray.html">Federer vs Murray</a>
+				        </li>
+				    </ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="header">
+<h1 class="title">Wimbledon 2015</h1>
+</div>
+
+
+<div id="federer-vs-murray" class="section level3">
+<h3>Federer vs Murray</h3>
+<p>Today Andy Murray faces Roger Federer in the semi-final of Wimbledon 2015. This post will, like the <a href="williams-sharapova.html">Williams vs Sharapova</a> from yesterday, look at some of the functionality of the package, focussing on <a href="simMatches.html"><code>simMatches</code></a> and <a href="simDf.html"><code>simDf</code></a>.</p>
+<p>Make sure the package is installed and loaded…</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;durtal/servevolleyR&quot;)</span>
+<span class="kw">library</span>(servevolleyR)</code></pre>
+<p>We need to estimate the probability that each player will win a point on his first serve, second serve, and the probability that his first serve will be in. To do this, the simplest way is to use serve statistics shown on each of the players ATP pages, <a href="http://www.atpworldtour.com/en/players/roger-federer/f324/player-stats?year=2015&amp;surfaceType=grass">Federer</a> and <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats?year=2015&amp;surfaceType=grass">Murray</a>, filtered to this year, and played on grass, Federer has 59 service games, and Murray 57.</p>
+<pre class="sourceCode r"><code class="sourceCode r">federer1 &lt;-<span class="st"> </span>.<span class="dv">83</span>    <span class="co"># federer first serve win %</span>
+federer2 &lt;-<span class="st"> </span>.<span class="dv">51</span>    <span class="co"># federer second serve win %</span>
+federerIn &lt;-<span class="st"> </span>.<span class="dv">70</span>   <span class="co"># federer first serve in %</span>
+
+murray1 &lt;-<span class="st"> </span>.<span class="dv">81</span>     <span class="co"># murray first serve win %</span>
+murray2 &lt;-<span class="st"> </span>.<span class="dv">57</span>     <span class="co"># murray second serve win %</span>
+murrayIn &lt;-<span class="st"> </span>.<span class="dv">67</span>    <span class="co"># murray first serve in %</span></code></pre>
+<p>First a couple of plots that look at each players service games:</p>
+<div class="row">
+<div class="col-sm-6">
+<h3 style="text-align: center">
+Federer
+</h3>
+<pre class="sourceCode r"><code class="sourceCode r">federerGames &lt;-<span class="st"> </span><span class="kw">simGames</span>(<span class="dt">n =</span> <span class="fl">1e4</span>,
+                         <span class="dt">p =</span> federer1,
+                         <span class="dt">p2 =</span> federer2,
+                         <span class="dt">firstServe =</span> federerIn)
+
+federerGames</code></pre>
+<pre><code>## 
+## Simulation of 10000 service games:
+## Server won 0.9366 (9366/10000) of games.
+## 
+## Server probabilities:
+##     p   p2 firstServe
+##  0.83 0.51        0.7</code></pre>
+<p>Federer won <strong>0.9366</strong> of his service games, in 2015 (according to the link above) he actually won <strong>0.97</strong> of service games. The score in each of the simulated service games is plotted below.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(federerGames)</code></pre>
+<p><img src="federer-murray_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
+</div>
+<div class="col-sm-6">
+<h3 style="text-align: center">
+Murray
+</h3>
+<pre class="sourceCode r"><code class="sourceCode r">murrayGames &lt;-<span class="st"> </span><span class="kw">simGames</span>(<span class="dt">n =</span> <span class="fl">1e4</span>,
+                        <span class="dt">p =</span> murray1,
+                        <span class="dt">p2 =</span> murray2,
+                        <span class="dt">firstServe =</span> murrayIn)
+
+murrayGames</code></pre>
+<pre><code>## 
+## Simulation of 10000 service games:
+## Server won 0.9349 (9349/10000) of games.
+## 
+## Server probabilities:
+##     p   p2 firstServe
+##  0.81 0.57       0.67</code></pre>
+<p>Murray won <strong>0.9349</strong> of his service games, in 2015 (according to the link above) he actually won <strong>0.91</strong> of service games. The score in each of the simulated service games is plotted below.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(murrayGames)</code></pre>
+<p><img src="federer-murray_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="simmatches" class="section level3">
+<h3><code>simMatches</code></h3>
+<p>Rather than simulate sets as well, I’ll jump straight to <a href="simMatches.html"><code>simMatches</code></a> and simulate 1000 matches between Federer and Murray. It is followed by a summary of those 1000 matches on the left, and a plot on the right, showing the match scores.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fedmur &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="fl">1e3</span>, <span class="dt">sets =</span> <span class="dv">5</span>, <span class="dt">tiebreaks =</span> <span class="ot">TRUE</span>, <span class="dt">finalSetTiebreak =</span> <span class="ot">TRUE</span>,
+                     <span class="dt">pA =</span> federer1, <span class="dt">p2A =</span> federer2, <span class="dt">firstServeA =</span> federerIn,
+                     <span class="dt">pB =</span> murray1, <span class="dt">p2B =</span> murray2, <span class="dt">firstServeB =</span> murrayIn,
+                     <span class="dt">players =</span> <span class="kw">c</span>(<span class="st">&quot;Federer&quot;</span>, <span class="st">&quot;Murray&quot;</span>))</code></pre>
+<div class="row">
+<div class="col-sm-6">
+<p>Federer wins <strong>0.527</strong> of matches between the two. Prices on Betfair put Federer’s chance of winning at 0.47.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fedmur)</code></pre>
+<pre><code>## 
+## Simulation of 1000 matches:
+## 
+## Player A (Federer) won 0.527 of matches.
+## 
+## Server Probabilities:
+##   player    p   p2 firstServe
+##  Federer 0.83 0.51       0.70
+##   Murray 0.81 0.57       0.67
+## 
+## 
+##        playerB
+## playerA     0     1     2     3
+##       0                   0.110
+##       1                   0.178
+##       2                   0.185
+##       3 0.130 0.210 0.187</code></pre>
+</div>
+<div class="col-sm-6">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fedmur)</code></pre>
+<p><img src="federer-murray_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="672" /></p>
+</div>
+</div>
+<p>Using <code>simMatches</code> means that each simulated set has at least 3 simulated sets, and at most 5 simulated sets. So 1000 Match simulations contains between 3000 and 5000 simulated sets. Following that, each set will have been 6 and 12 simulated service games, this means that there is a huge amount of simulated data. This data can be converted to a dataset using the <a href="simDf.html"><code>simDf</code></a> function, it can take some time to convert the list, so be patient. <code>simDf</code> only takes one set argument, the list returned by <code>simMatches</code>, but supplying <code>.progress = &quot;time&quot;</code> will add <code>plyr</code>’s progress bar to show how long it should take (I won’t add it here, but I will time the conversion).</p>
+<pre class="sourceCode r"><code class="sourceCode r">start &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+fedmurDf &lt;-<span class="st"> </span><span class="kw">simDf</span>(fedmur)
+finish &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()</code></pre>
+<p>Converting this list took <strong>1.0169743</strong> minutes, showing that it can take some time, more simulations, the longer it takes, but we now have a dataset of <strong>47436</strong> rows and <strong>20</strong> variables, explanation of these variables can be found at the bottom of the <a href="simMatches.html"><code>simMatches</code></a> page.</p>
+</div>
+<div id="enter-the-dplyr" class="section level3">
+<h3>Enter the <code>dplyr</code></h3>
+<p>For manipulation of datasets, then <code>dplyr</code> is the best choice, and we’ll use <code>ggplot2</code> for plotting. Below we load the <code>dplyr</code> and <code>ggplot2</code> packages and filter the first set in the first simulation: the set ended in a tiebreak (<code>gameNo</code> goes up to 13), with Murray emerging as the winner of the set 7-6.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+
+fedmurDf %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(simNo ==<span class="st"> </span><span class="dv">1</span>, setNo ==<span class="st"> </span><span class="dv">1</span>)</code></pre>
+<pre><code>##    simNo playerA playerB mA mB result setNo      pA     pB setA setB
+## 1      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 2      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 3      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 4      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 5      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 6      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 7      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 8      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 9      1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 10     1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 11     1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 12     1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+## 13     1 Federer  Murray  3  2      1     1 Federer Murray    6    7
+##    set_res gameNo serving    p   p2 firstServe game_res server returner
+## 1        0      1 Federer 0.83 0.51       0.70        1      4        1
+## 2        0      2  Murray 0.81 0.57       0.67        1      4        2
+## 3        0      3 Federer 0.83 0.51       0.70        1      4        1
+## 4        0      4  Murray 0.81 0.57       0.67        1      4        0
+## 5        0      5 Federer 0.83 0.51       0.70        1      4        0
+## 6        0      6  Murray 0.81 0.57       0.67        1      5        3
+## 7        0      7 Federer 0.83 0.51       0.70        1      4        0
+## 8        0      8  Murray 0.81 0.57       0.67        1      7        5
+## 9        0      9 Federer 0.83 0.51       0.70        1      4        0
+## 10       0     10  Murray 0.81 0.57       0.67        1      4        1
+## 11       0     11 Federer 0.83 0.51       0.70        1      4        2
+## 12       0     12  Murray 0.81 0.57       0.67        1      6        4
+## 13       0     13 Federer   NA   NA         NA        0     NA       NA</code></pre>
+<p>We can use this dataset to establish the probability of set scores, depending on who opens the serving:</p>
+<pre class="sourceCode r"><code class="sourceCode r">setSummary &lt;-<span class="st"> </span>fedmurDf %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(gameNo ==<span class="st"> </span><span class="dv">1</span>) %&gt;%<span class="st">            </span><span class="co"># filter just gameNo == 1</span>
+<span class="st">    </span><span class="kw">group_by</span>(serving, setA, setB) %&gt;%<span class="st">  </span><span class="co"># who serves first, and what were the scores</span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%<span class="st">             </span><span class="co"># count how many</span>
+<span class="st">    </span><span class="kw">ungroup</span>() %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(serving) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">pct =</span> n /<span class="st"> </span><span class="kw">sum</span>(n))           <span class="co"># calculate proportion</span></code></pre>
+<p>Given their very similar service probabilities it’s unsurprising to see set scores so tight, with a tiebreak estimated at around 0.5 regardless of who opens the serving.</p>
+<div class="row">
+<div class="col-sm-6">
+<p><img src="federer-murray_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="672" /></p>
+</div>
+<div class="col-sm-6">
+<p><img src="federer-murray_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>
