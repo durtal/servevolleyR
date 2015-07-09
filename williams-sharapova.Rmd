@@ -8,7 +8,7 @@ Today sees Serena Williams take on Maria Sharapova in the semi-final of Wimbledo
 
 First make sure the package is installed and loaded:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # devtools::install_github("durtal/servevolleyR")
 library(servevolleyR)
 ```
@@ -46,7 +46,7 @@ We can then use these parameters in the following functions included in `servevo
 
 Using `simGame` and `replicate`
 
-```{r}
+```{r cache=TRUE}
 serenaServe <- replicate(1e3, simGame(p = serena1,
                                       p2 = serena2,
                                       firstServe = serenaIn))
@@ -64,7 +64,7 @@ The simulation estimates that Serena will win `r (table(serenaServe) / sum(table
 
 Using `simGames`
 
-```{r}
+```{r cache=TRUE}
 mariaServe <- simGames(n = 1e3,                # number of simulations
                        p = maria1,
                        p2 = maria2,
@@ -96,7 +96,7 @@ plot(mariaServe)
 
 Another thing worth bearing in mind is that player A opens the serving.
 
-```{r}
+```{r cache=TRUE}
 serenaSets <- simSets(n = 1e3, playTiebreak = TRUE, players = c("Serena", "Maria"),
                       pA = serena1, p2A = serena2, firstServeA = serenaIn,
                       pB = maria1, p2B = maria2, firstServeB = mariaIn)
@@ -125,7 +125,7 @@ plot(serenaSets)
 
 The list returned by `simSets` can be converted into a dataframe for further analysis, this dataframe effectively contains data about simulated service games, thereby not requiring the use of `simGames`.  To convert this to a dataframe simply use the [`simDf`](simDf.html) function, it can sometimes take some time to convert the data, the larger the number of simulations the longer it takes:
 
-```{r}
+```{r cache=TRUE}
 serenaSetsDf <- simDf(serenaSets)
 head(serenaSetsDf)
 ```
@@ -136,7 +136,7 @@ These two functions follow the same convention as those above, and require param
 
 I'll just use `simMatches` here, with Serena opening the serving.
 
-```{r}
+```{r cache=TRUE}
 serenaMatch <- simMatches(n = 1e3, sets = 3, finalSetTiebreak = TRUE,
                           players = c("Serena", "Maria"), tiebreaks = TRUE,
                           pA = serena1, p2A = serena2, firstServeA = serenaIn,
@@ -168,7 +168,7 @@ plot(serenaMatch)
 
 Sharapova's second serve % will need to be much improved if she is to get close to Serena.  Simulating a match between the two using just their first serves makes the match much closer:
 
-```{r}
+```{r cache=TRUE}
 FirstServes <- simMatches(n = 1e3, sets = 3, finalSetTiebreak = TRUE,
                           players = c("Serena", "Maria"), tiebreaks = TRUE,
                           pA = serena1, pB = maria1)

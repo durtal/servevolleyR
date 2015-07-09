@@ -165,6 +165,9 @@ img {
 				        <li>
 				            <a href="williams-sharapova.html">Williams vs Sharapova</a>
 				        </li>
+				        <li>
+				            <a href="federer-murray.html">Federer vs Murray</a>
+				        </li>
 				    </ul>
 				</li>
 			</ul>
@@ -266,7 +269,7 @@ img {
 <pre><code>## 
 ## Simulation of 100 matches:
 ## 
-## Player A (A) won 0.7 of matches.
+## Player A (A) won 0.61 of matches.
 ## 
 ## Server Probabilities:
 ##  player    p   p2 firstServe
@@ -276,7 +279,7 @@ img {
 <pre><code>## 
 ## Simulation of 100 matches:
 ## 
-## Player A (A) won 0.7 of matches.
+## Player A (A) won 0.61 of matches.
 ## 
 ## Server Probabilities:
 ##  player    p   p2 firstServe
@@ -286,9 +289,9 @@ img {
 ## 
 ##        playerB
 ## playerA    0    1    2
-##       0           0.16
-##       1           0.14
-##       2 0.44 0.26</code></pre>
+##       0           0.21
+##       1           0.18
+##       2 0.32 0.29</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(egMatches)</code></pre>
 <p><img src="simMatches_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
 </div>
@@ -298,19 +301,19 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatches)
 <span class="kw">head</span>(df)</code></pre>
 <pre><code>##   simNo playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1     1       A       B  2  1      1     1  A  B    6    2       1      1
-## 2     1       A       B  2  1      1     1  A  B    6    2       1      2
-## 3     1       A       B  2  1      1     1  A  B    6    2       1      3
-## 4     1       A       B  2  1      1     1  A  B    6    2       1      4
-## 5     1       A       B  2  1      1     1  A  B    6    2       1      5
-## 6     1       A       B  2  1      1     1  A  B    6    2       1      6
+## 1     1       A       B  2  0      1     1  A  B    6    1       1      1
+## 2     1       A       B  2  0      1     1  A  B    6    1       1      2
+## 3     1       A       B  2  0      1     1  A  B    6    1       1      3
+## 4     1       A       B  2  0      1     1  A  B    6    1       1      4
+## 5     1       A       B  2  0      1     1  A  B    6    1       1      5
+## 6     1       A       B  2  0      1     1  A  B    6    1       1      6
 ##   serving    p   p2 firstServe game_res server returner
 ## 1       A 0.78 0.56       0.67        1      4        2
-## 2       B 0.70 0.60       0.70        0      4        6
-## 3       A 0.78 0.56       0.67        1      4        0
-## 4       B 0.70 0.60       0.70        1      4        0
-## 5       A 0.78 0.56       0.67        1      4        2
-## 6       B 0.70 0.60       0.70        1      4        2</code></pre>
+## 2       B 0.70 0.60       0.70        1      4        0
+## 3       A 0.78 0.56       0.67        1      4        1
+## 4       B 0.70 0.60       0.70        0      2        4
+## 5       A 0.78 0.56       0.67        1      5        3
+## 6       B 0.70 0.60       0.70        0      3        5</code></pre>
 <p>The dataset contains the following variables:</p>
 <table>
 <thead>

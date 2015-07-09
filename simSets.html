@@ -165,6 +165,9 @@ img {
 				        <li>
 				            <a href="williams-sharapova.html">Williams vs Sharapova</a>
 				        </li>
+				        <li>
+				            <a href="federer-murray.html">Federer vs Murray</a>
+				        </li>
 				    </ul>
 				</li>
 			</ul>
@@ -262,7 +265,7 @@ img {
 ##       A 0.78 0.56       0.67
 ##       B 0.70 0.60       0.70
 ## 
-## Player A (A) won 0.57 of sets.</code></pre>
+## Player A (A) won 0.61 of sets.</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egSets)</code></pre>
 <pre><code>## 
 ## Simulation of 100 sets:
@@ -272,14 +275,15 @@ img {
 ##       A 0.78 0.56       0.67
 ##       B 0.70 0.60       0.70
 ## 
-## Player A (A) won 0.57 of sets.
+## Player A (A) won 0.61 of sets.
 ##        playerB
 ## playerA    1    2    3    4    5    6    7
-##       2                          0.02     
-##       4                          0.19     
-##       5                               0.03
-##       6 0.04 0.04 0.17 0.05           0.19
-##       7                     0.03 0.24</code></pre>
+##       2                          0.01     
+##       3                          0.03     
+##       4                          0.21     
+##       5                               0.04
+##       6 0.10 0.05 0.23 0.04           0.10
+##       7                     0.04 0.15</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(egSets)</code></pre>
 <p><img src="simSets_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
 </div>
@@ -289,19 +293,19 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egSets)
 <span class="kw">head</span>(df)</code></pre>
 <pre><code>##   simNo pA pB setA setB set_res gameNo serving    p   p2 firstServe
-## 1     1  A  B    4    6       0      1       A 0.78 0.56       0.67
-## 2     1  A  B    4    6       0      2       B 0.70 0.60       0.70
-## 3     1  A  B    4    6       0      3       A 0.78 0.56       0.67
-## 4     1  A  B    4    6       0      4       B 0.70 0.60       0.70
-## 5     1  A  B    4    6       0      5       A 0.78 0.56       0.67
-## 6     1  A  B    4    6       0      6       B 0.70 0.60       0.70
+## 1     1  A  B    6    7       0      1       A 0.78 0.56       0.67
+## 2     1  A  B    6    7       0      2       B 0.70 0.60       0.70
+## 3     1  A  B    6    7       0      3       A 0.78 0.56       0.67
+## 4     1  A  B    6    7       0      4       B 0.70 0.60       0.70
+## 5     1  A  B    6    7       0      5       A 0.78 0.56       0.67
+## 6     1  A  B    6    7       0      6       B 0.70 0.60       0.70
 ##   game_res server returner
 ## 1        1      4        0
-## 2        1      4        0
-## 3        0      2        4
-## 4        1      4        2
-## 5        1      4        0
-## 6        1      4        0</code></pre>
+## 2        1      4        2
+## 3        1      4        1
+## 4        1      6        4
+## 5        1      4        1
+## 6        1      5        3</code></pre>
 <p>The dataset contains the following variables:</p>
 <table>
 <thead>
