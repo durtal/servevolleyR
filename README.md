@@ -17,7 +17,7 @@ devtools::install_github("durtal/servevolleyR")
 ??servevolleyR
 ```
 
-Help pages are available [here](http://durtal.github.io/servevolleyR/), vignettes will be added in time
+Help pages are available [here](http://durtal.github.io/servevolleyR/), a couple of vignettes looking at two matches from Wimbledon 2015 are now available, [Serena Williams vs Maria Sharapova](http://durtal.github.io/servevolleyR/williams-sharapova.html) and [Federer vs Murray](http://durtal.github.io/servevolleyR/federer-murray.html).
 
 ### Shiny
 
