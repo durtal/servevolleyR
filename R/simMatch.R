@@ -7,6 +7,7 @@
 #' @param pB probability of player B winning point on their serve
 #' @param sets number of sets to be played
 #' @param tiebreaks play tie break at 6-6, or keep playing
+#' @param currentScore current set score
 #' @param finalSetTiebreak play tie break at 6-6 in final set
 #' @param players player names, vector of length 2
 #' @param detail return detailed data for the Match, default FALSE
@@ -27,13 +28,16 @@
 #' players first serve being in, number of sets whether they play a tiebreak
 #'
 #' @export
-simMatch <- function(pA, pB, sets = c(3, 5), tiebreaks = TRUE, finalSetTiebreak = FALSE,
-                     players = c("A", "B"), detail = FALSE, p2A = NULL,
+simMatch <- function(pA, pB, sets = c(3, 5), tiebreaks = TRUE, currentScore = c(0,0),
+                     finalSetTiebreak = FALSE, players = c("A", "B"), detail = FALSE, p2A = NULL,
                      firstServeA = NULL, p2B = NULL, firstServeB = NULL) {
 
+    if(sum(currentScore) >= sets[1]) {
+        stop("currentScore greater than number of sets to be played")
+    }
     # set scores
-    a <- 0
-    b <- 0
+    a <- currentScore[1]
+    b <- currentScore[2]
     # --------------------------------------------------------------------------
     # start list to return detailed data
     result <- list()
@@ -190,6 +194,7 @@ summary.svR_match <- function(x) {
 #' @param pB probability of player B winning point on their serve
 #' @param sets number of sets to be played
 #' @param tiebreaks play tie break at 6-6, or keep playing
+#' @param currentScore current set score
 #' @param finalSetTiebreak play tie break at 6-6 in final set
 #' @param players player names, vector of length 2
 #' @param detail return detailed data for the Match, default FALSE
@@ -213,14 +218,14 @@ summary.svR_match <- function(x) {
 #' and games in the match.  This list can be converted to a dataframe using \link{simDf}. See
 #'
 #' @export
-simMatches <- function(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE, finalSetTiebreak = FALSE,
-                       players = c("A", "B"), p2A = NULL, firstServeA = NULL,
+simMatches <- function(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE, currentScore = c(0,0),
+                       finalSetTiebreak = FALSE, players = c("A", "B"), p2A = NULL, firstServeA = NULL,
                        p2B = NULL, firstServeB = NULL, .progress = "none") {
 
     # simulate many matches
     simulatedMatches <- plyr::rlply(.n = n, {
 
-        simMatch(pA = pA, pB = pB, sets = sets, tiebreaks = tiebreaks,
+        simMatch(pA = pA, pB = pB, sets = sets, tiebreaks = tiebreaks, currentScore = currentScore,
                  finalSetTiebreak = finalSetTiebreak, players = players, detail = TRUE,
                  p2A = p2A, firstServeA = firstServeA, p2B = p2B, firstServeB = firstServeB)
 
