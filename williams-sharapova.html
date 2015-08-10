@@ -200,9 +200,9 @@ img {
 williams2 &lt;-<span class="st"> </span><span class="fl">0.58</span>     <span class="co"># serena second serve win %</span>
 williamsIn &lt;-<span class="st"> </span><span class="fl">0.65</span>    <span class="co"># serena first serve in %</span>
 
-sharapova1 &lt;-<span class="st"> </span><span class="fl">0.73</span>      <span class="co"># maria first serve win %</span>
-sharapova2 &lt;-<span class="st"> </span><span class="fl">0.36</span>      <span class="co"># maria second serve win %</span>
-sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>      <span class="co"># maria first serve in %</span></code></pre>
+sharapova1 &lt;-<span class="st"> </span><span class="fl">0.73</span>    <span class="co"># maria first serve win %</span>
+sharapova2 &lt;-<span class="st"> </span><span class="fl">0.36</span>    <span class="co"># maria second serve win %</span>
+sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>    <span class="co"># maria first serve in %</span></code></pre>
 <p>We can then use these parameters in the following functions included in <code>servevolleyR</code>, <a href="simGame.html"><code>simGame</code></a>, <a href="simGames.html"><code>simGames</code></a>, <a href="simSet.html"><code>simSet</code></a>, <a href="simSets.html"><code>simSets</code></a>, <a href="simTiebreak.html"><code>simTiebreak</code></a>, <a href="simMatch.html"><code>simMatch</code></a> and <a href="simMatches.html"><code>simMatches</code></a>.</p>
 </div>
 <div id="simgame-and-simgames" class="section level3">
@@ -212,29 +212,29 @@ sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>      <span
 <h4>Williams service games</h4>
 <p>Using <code>simGame</code> and <code>replicate</code></p>
 <pre class="sourceCode r"><code class="sourceCode r">williamsServe &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simGame</span>(<span class="dt">p =</span> williams1,
-                                      <span class="dt">p2 =</span> williams2,
-                                      <span class="dt">firstServe =</span> williamsIn))</code></pre>
+                                        <span class="dt">p2 =</span> williams2,
+                                        <span class="dt">firstServe =</span> williamsIn))</code></pre>
 <p><code>williamsServe</code> is a vector of 1000 service game results, <strong>1</strong> when the server (Serena) wins, and <strong>0</strong> when the returner wins, the first 6 results are 1, 1, 1, 1, 1, 1. This vector can be summarised as follows.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(williamsServe) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(williamsServe))</code></pre>
 <pre><code>## williamsServe
 ##     0     1 
-## 0.078 0.922</code></pre>
-<p>The simulation estimates that Serena will win 0.922 of her service games.</p>
+## 0.083 0.917</code></pre>
+<p>The simulation estimates that Serena will win 0.917 of her service games.</p>
 </div>
 <div id="sharapova-service-games" class="section level4">
 <h4>Sharapova service games</h4>
 <p>Using <code>simGames</code></p>
 <pre class="sourceCode r"><code class="sourceCode r">sharapovaServe &lt;-<span class="st"> </span><span class="kw">simGames</span>(<span class="dt">n =</span> <span class="fl">1e3</span>,                <span class="co"># number of simulations</span>
-                       <span class="dt">p =</span> sharapova1,
-                       <span class="dt">p2 =</span> sharapova2,
-                       <span class="dt">firstServe =</span> sharapovaIn)</code></pre>
+                           <span class="dt">p =</span> sharapova1,
+                           <span class="dt">p2 =</span> sharapova2,
+                           <span class="dt">firstServe =</span> sharapovaIn)</code></pre>
 <div class="row">
 <div class="col-sm-6">
-<p>The benefit of using <code>simGames</code> isn’t speed, but detail, <code>simGames</code> returns a list with detailed data about the simulated games, data that includes the number of points each player won in a service game. The list has a class of <strong>svR_games</strong>, which comes with a few methods, such as <code>print</code>, <code>summary</code> and <code>plot</code>, the print method is shown below. While the plot method can be seen to the right, it shows the probability that Maria will win her service game (0.7), as well as the scores in the service games, 0 corresponds to <em>love</em>, 1 to 15, so the score 4-2 is W-30, 5-3 is winning after deuce:</p>
+<p>The benefit of using <code>simGames</code> isn’t speed, but detail, <code>simGames</code> returns a list with detailed data about the simulated games, data that includes the number of points each player won in a service game. The list has a class of <strong>svR_games</strong>, which comes with a few methods, such as <code>print</code>, <code>summary</code> and <code>plot</code>, the print method is shown below. While the plot method can be seen to the right, it shows the probability that Maria will win her service game (0.676), as well as the scores in the service games, 0 corresponds to <em>love</em>, 1 to 15, so the score 4-2 is W-30, 5-3 is winning after deuce:</p>
 <pre class="sourceCode r"><code class="sourceCode r">sharapovaServe</code></pre>
 <pre><code>## 
 ## Simulation of 1000 service games:
-## Server won 0.7 (700/1000) of games.
+## Server won 0.676 (676/1000) of games.
 ## 
 ## Server probabilities:
 ##     p   p2 firstServe
@@ -252,11 +252,11 @@ sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>      <span
 <p><code>simSet</code> simulates a single set given a number of parameters for two players, the only two required is the probability that each player wins a point on their first serve, <code>williams1</code> and <code>sharapova1</code> above, but additional parameters can also be provided. To simulate many service games, there are two options, the first, probably quicker is to use <code>simSet</code> inside <code>replicate</code>, we’ll just use <code>simSets</code>.</p>
 <p>Another thing worth bearing in mind is that player A opens the serving.</p>
 <pre class="sourceCode r"><code class="sourceCode r">williamsSets &lt;-<span class="st"> </span><span class="kw">simSets</span>(<span class="dt">n =</span> <span class="fl">1e3</span>, <span class="dt">playTiebreak =</span> <span class="ot">TRUE</span>, <span class="dt">players =</span> <span class="kw">c</span>(<span class="st">&quot;Serena&quot;</span>, <span class="st">&quot;Maria&quot;</span>),
-                      <span class="dt">pA =</span> williams1, <span class="dt">p2A =</span> williams2, <span class="dt">firstServeA =</span> williamsIn,
-                      <span class="dt">pB =</span> sharapova1, <span class="dt">p2B =</span> sharapova2, <span class="dt">firstServeB =</span> sharapovaIn)</code></pre>
+                        <span class="dt">pA =</span> williams1, <span class="dt">p2A =</span> williams2, <span class="dt">firstServeA =</span> williamsIn,
+                        <span class="dt">pB =</span> sharapova1, <span class="dt">p2B =</span> sharapova2, <span class="dt">firstServeB =</span> sharapovaIn)</code></pre>
 <div class="row">
 <div class="col-sm-6">
-<p>Like <code>simGames</code>, it is likely slower than using <code>replicate</code> and <code>simSet</code>, however the list returned by <code>simSets</code> has much more detail about the simulated Sets. The list has a class of <strong>svR_sets</strong>, which comes with a few methods, such as <code>print</code>, <code>summary</code>, and <code>plot</code>. The summary method is shown below. While the plot method is shown to the right, showing the probability that player A will win the set (0.87), as well as the probability for each potential set score:</p>
+<p>Like <code>simGames</code>, it is likely slower than using <code>replicate</code> and <code>simSet</code>, however the list returned by <code>simSets</code> has much more detail about the simulated Sets. The list has a class of <strong>svR_sets</strong>, which comes with a few methods, such as <code>print</code>, <code>summary</code>, and <code>plot</code>. The summary method is shown below. While the plot method is shown to the right, showing the probability that player A will win the set (0.862), as well as the probability for each potential set score:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(williamsSets)</code></pre>
 <pre><code>## 
 ## Simulation of 1000 sets:
@@ -266,15 +266,15 @@ sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>      <span
 ##  Serena 0.80 0.58       0.65
 ##   Maria 0.73 0.36       0.60
 ## 
-## Player A (Serena) won 0.87 of sets.
+## Player A (Serena) won 0.862 of sets.
 ##        playerB
 ## playerA     0     1     2     3     4     5     6     7
-##       2                                     0.002      
-##       3                                     0.008      
-##       4                                     0.072      
-##       5                                           0.009
-##       6 0.024 0.143 0.110 0.321 0.091             0.039
-##       7                               0.077 0.104</code></pre>
+##       2                                     0.013      
+##       3                                     0.003      
+##       4                                     0.068      
+##       5                                           0.012
+##       6 0.021 0.140 0.116 0.330 0.079             0.042
+##       7                               0.069 0.107</code></pre>
 </div>
 <div class="col-sm-6">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(williamsSets)</code></pre>
@@ -304,9 +304,9 @@ sharapovaIn &lt;-<span class="st"> </span><span class="fl">0.6</span>      <span
 <p>These two functions follow the same convention as those above, and require parameters for two players, and a few details about the type of match they are playing, ie. how many sets, play tiebreaks, etc.</p>
 <p>I’ll just use <code>simMatches</code> here, with Serena opening the serving.</p>
 <pre class="sourceCode r"><code class="sourceCode r">williamsMatch &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="fl">1e3</span>, <span class="dt">sets =</span> <span class="dv">3</span>, <span class="dt">finalSetTiebreak =</span> <span class="ot">TRUE</span>,
-                          <span class="dt">players =</span> <span class="kw">c</span>(<span class="st">&quot;Serena&quot;</span>, <span class="st">&quot;Maria&quot;</span>), <span class="dt">tiebreaks =</span> <span class="ot">TRUE</span>,
-                          <span class="dt">pA =</span> williams1, <span class="dt">p2A =</span> williams2, <span class="dt">firstServeA =</span> williamsIn,
-                          <span class="dt">pB =</span> sharapova1, <span class="dt">p2B =</span> sharapova2, <span class="dt">firstServeB =</span> sharapovaIn)</code></pre>
+                            <span class="dt">players =</span> <span class="kw">c</span>(<span class="st">&quot;Serena&quot;</span>, <span class="st">&quot;Maria&quot;</span>), <span class="dt">tiebreaks =</span> <span class="ot">TRUE</span>,
+                            <span class="dt">pA =</span> williams1, <span class="dt">p2A =</span> williams2, <span class="dt">firstServeA =</span> williamsIn,
+                            <span class="dt">pB =</span> sharapova1, <span class="dt">p2B =</span> sharapova2, <span class="dt">firstServeB =</span> sharapovaIn)</code></pre>
 <div class="row">
 <div class="col-sm-6">
 <p>Like the previous two functions, <code>simGames</code> and <code>simSets</code>, it is likely slower than using <code>replicate</code> and <code>simMatch</code>, but the detail is much better, getting data about the matches, sets, and games in each simulation. The list returned has a class of <strong>svR_matches</strong>, which comes with <code>print</code>, <code>summary</code>, and <code>plot</code> methods. The summary method is shown below, while the plot to the right shows the probability of Player A winning the match (0.949), as well as the final scores.</p>

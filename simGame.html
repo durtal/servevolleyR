@@ -234,7 +234,7 @@ img {
 <div id="example" class="section level3">
 <h3>Example</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a look at a detailed return</span>
 game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</code></pre>
 <p>The object <code>game</code> has a class of <strong>svR_game</strong> which comes with a few methods</p>
@@ -243,14 +243,14 @@ game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="
 ## 
 ## Server won the game.
 ##    player points
-##    server      4
-##  returner      0</code></pre>
+##    server      5
+##  returner      3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(game)</code></pre>
 <pre><code>## Service Game Result:
 ## Server won the game.
 ##    player points
-##    server      4
-##  returner      0
+##    server      5
+##  returner      3
 ## 
 ## Probability of Server (A) winning point:
 ##     p   p2 firstServe
@@ -263,7 +263,7 @@ game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="
 <span class="kw">table</span>(game) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(game))</code></pre>
 <pre><code>## game
 ##     0     1 
-## 0.093 0.907</code></pre>
+## 0.098 0.902</code></pre>
 </div>
 <div id="using-simdf" class="section level3">
 <h3>Using <code>simDf</code></h3>

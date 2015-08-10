@@ -10,7 +10,7 @@
 
 
 
-<title>simPoint</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -175,56 +175,27 @@ img {
 	</div>
 </nav>
 
-<div id="header">
-<h1 class="title">simPoint</h1>
-</div>
 
 
-<p>Simulate a service point given a number of parameters for the server, that include probability of the server winning a point on their first serve, on their second serve, and the probability that their first serve will go in.</p>
-<div id="usage" class="section level3">
-<h3>Usage</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simPoint</span>(p, <span class="dt">p2 =</span> <span class="ot">NULL</span>, <span class="dt">firstServe =</span> <span class="ot">NULL</span>)</code></pre>
+<div id="servevolleyr-0.0.1" class="section level1">
+<h1>servevolleyR 0.0.1</h1>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>Collection of functions to simulate a tennis point, game, set, tiebreak and match.</p>
 </div>
-<div id="arguments" class="section level3">
-<h3>Arguments</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left">param</th>
-<th align="left">details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">p</td>
-<td align="left">probability of server winning point on their first serve</td>
-</tr>
-<tr class="even">
-<td align="left">p2</td>
-<td align="left">probability of server winning point on their second serve</td>
-</tr>
-<tr class="odd">
-<td align="left">firstServe</td>
-<td align="left">probability of first serve being in</td>
-</tr>
-</tbody>
-</table>
+<div id="installation" class="section level3">
+<h3>Installation</h3>
+<pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;durtal/servevolleyR&quot;</span>)</code></pre>
 </div>
-<div id="return" class="section level3">
-<h3>Return</h3>
-<p>The value returned is numeric, 1 if the server wins and 0 if the returner wins.</p>
+<div id="help" class="section level3">
+<h3>Help</h3>
+<pre class="sourceCode r"><code class="sourceCode r">??servevolleyR</code></pre>
+<p>Help pages will be made online too, with some vignettes</p>
 </div>
-<div id="example" class="section level3">
-<h3>Example</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
-<p>Use <code>replicate</code> to simulate many points:</p>
-<pre class="sourceCode r"><code class="sourceCode r">pts &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>))
-<span class="co"># summarise results</span>
-<span class="kw">table</span>(pts) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(pts))</code></pre>
-<pre><code>## pts
-##     0     1 
-## 0.286 0.714</code></pre>
+<div id="other" class="section level3">
+<h3>Other</h3>
+<p>Comments/suggestions to improve code, and speed up some of the functions would be welcomed.</p>
+</div>
 </div>
 
 

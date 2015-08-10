@@ -31,9 +31,9 @@ williams1 <- 0.80     # serena first serve win %
 williams2 <- 0.58     # serena second serve win %
 williamsIn <- 0.65    # serena first serve in %
 
-sharapova1 <- 0.73      # maria first serve win %
-sharapova2 <- 0.36      # maria second serve win %
-sharapovaIn <- 0.6      # maria first serve in %
+sharapova1 <- 0.73    # maria first serve win %
+sharapova2 <- 0.36    # maria second serve win %
+sharapovaIn <- 0.6    # maria first serve in %
 ```
 
 We can then use these parameters in the following functions included in `servevolleyR`, [`simGame`](simGame.html), [`simGames`](simGames.html), [`simSet`](simSet.html), [`simSets`](simSets.html), [`simTiebreak`](simTiebreak.html), [`simMatch`](simMatch.html) and [`simMatches`](simMatches.html).
@@ -48,8 +48,8 @@ Using `simGame` and `replicate`
 
 ```{r cache=TRUE}
 williamsServe <- replicate(1e3, simGame(p = williams1,
-                                      p2 = williams2,
-                                      firstServe = williamsIn))
+                                        p2 = williams2,
+                                        firstServe = williamsIn))
 ```
 
 `williamsServe` is a vector of `r length(williamsServe)` service game results, **1** when the server (Serena) wins, and **0** when the returner wins, the first 6 results are `r head(williamsServe)`.  This vector can be summarised as follows.
@@ -66,9 +66,9 @@ Using `simGames`
 
 ```{r cache=TRUE}
 sharapovaServe <- simGames(n = 1e3,                # number of simulations
-                       p = sharapova1,
-                       p2 = sharapova2,
-                       firstServe = sharapovaIn)
+                           p = sharapova1,
+                           p2 = sharapova2,
+                           firstServe = sharapovaIn)
 ```
 
 <div class="row">
@@ -98,8 +98,8 @@ Another thing worth bearing in mind is that player A opens the serving.
 
 ```{r cache=TRUE}
 williamsSets <- simSets(n = 1e3, playTiebreak = TRUE, players = c("Serena", "Maria"),
-                      pA = williams1, p2A = williams2, firstServeA = williamsIn,
-                      pB = sharapova1, p2B = sharapova2, firstServeB = sharapovaIn)
+                        pA = williams1, p2A = williams2, firstServeA = williamsIn,
+                        pB = sharapova1, p2B = sharapova2, firstServeB = sharapovaIn)
 ```
 
 
@@ -138,9 +138,9 @@ I'll just use `simMatches` here, with Serena opening the serving.
 
 ```{r cache=TRUE}
 williamsMatch <- simMatches(n = 1e3, sets = 3, finalSetTiebreak = TRUE,
-                          players = c("Serena", "Maria"), tiebreaks = TRUE,
-                          pA = williams1, p2A = williams2, firstServeA = williamsIn,
-                          pB = sharapova1, p2B = sharapova2, firstServeB = sharapovaIn)
+                            players = c("Serena", "Maria"), tiebreaks = TRUE,
+                            pA = williams1, p2A = williams2, firstServeA = williamsIn,
+                            pB = sharapova1, p2B = sharapova2, firstServeB = sharapovaIn)
 ```
 
 <div class="row">
