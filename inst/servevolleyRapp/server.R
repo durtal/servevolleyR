@@ -5,10 +5,12 @@ library(servevolleyR)
 shinyServer(function(input, output) {
 
     rv <- reactiveValues(matches = NULL,
-                         sets = NULL)
+                         sets = NULL,
+                         pAsets = NULL,
+                         pBsets = NULL)
     observeEvent(input$simulate,
                  {
-                     rv$matches <- simMatches(500, sets = as.numeric(input$Sets),
+                     rv$matches <- simMatches(500, sets = as.numeric(input$Sets),currentScore = c(0,0),
                                         pA = input$pA, p2A = input$p2A, firstServeA = input$firstServeA,
                                         pB = input$pB, p2B = input$p2B, firstServeB = input$firstServeB)
                      rv$sets <- simSets(500,
