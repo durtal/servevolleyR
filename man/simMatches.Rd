@@ -5,8 +5,8 @@
 \title{simMatches}
 \usage{
 simMatches(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE,
-  finalSetTiebreak = FALSE, players = c("A", "B"), p2A = NULL,
-  firstServeA = NULL, p2B = NULL, firstServeB = NULL,
+  currentScore = c(0, 0), finalSetTiebreak = FALSE, players = c("A", "B"),
+  p2A = NULL, firstServeA = NULL, p2B = NULL, firstServeB = NULL,
   .progress = "none")
 }
 \arguments{
@@ -19,6 +19,8 @@ simMatches(n = 1000, pA, pB, sets = c(3, 5), tiebreaks = TRUE,
 \item{sets}{number of sets to be played}
 
 \item{tiebreaks}{play tie break at 6-6, or keep playing}
+
+\item{currentScore}{current set score}
 
 \item{finalSetTiebreak}{play tie break at 6-6 in final set}
 
