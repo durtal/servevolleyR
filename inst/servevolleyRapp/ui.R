@@ -29,10 +29,14 @@ shinyUI(fluidPage(
                radioButtons("Sets", label = "No. of Sets",
                             choices = list("3 Sets" = 3, "5 Sets" = 5),
                             selected = 3),
-#                numericInput(inputId = "pAsets", label = "Player A Sets",
-#                             value = 0, min = 0, max = 3),
-#                numericInput(inputId = "pBsets", label = "Player B Sets",
-#                             value = 0, min = 0, max = 3),
+               fluidRow(
+                   column(6,
+                          uiOutput("pASets")
+                   ),
+                   column(6,
+                          uiOutput("pBSets")
+                   )
+               ),
                actionButton("simulate", label = "Simulate Match"),
                plotOutput("sets"),
                plotOutput("matches")
