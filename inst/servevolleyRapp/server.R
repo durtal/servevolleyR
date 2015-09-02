@@ -46,7 +46,7 @@ shinyServer(function(input, output) {
                           p2 = input$p2A,
                           firstServe = input$firstServeA)
         plot(games)
-    })
+    }, bg = "#fcfcfc")
 
     output$PlayerB <- renderPlot({
 
@@ -54,19 +54,19 @@ shinyServer(function(input, output) {
                           p2 = input$p2B,
                           firstServe = input$firstServeB)
         plot(games)
-    })
+    }, bg = "#fcfcfc")
 
     output$sets <- renderPlot({
 
         if(input$simulate) {
             plot(rv$sets)
         }
-    })
+    }, bg = "#fcfcfc")
 
     output$matches <- renderPlot({
 
         if(input$simulate) {
             plot(rv$matches)
         }
-    })
+    }, bg = "#fcfcfc")
 })

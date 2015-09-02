@@ -245,5 +245,6 @@ plot.svR_games <- function(x) {
         ggplot2::labs(x = paste0("Server"),
                       y = paste0("Returner"),
                       title = paste(object$sim$n, " Game Simulations: Server wins ",
-                                    round(object$results$pct, 3), sep = ""))
+                                    round(object$results$pct, 3), sep = "")) +
+        ggplot2::theme(rect = ggplot2::element_rect(fill = "#FCFCFC", colour = "#FCFCFC"))
 }

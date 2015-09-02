@@ -357,6 +357,7 @@ plot.svR_sets <- function(x) {
                       y = paste0("Player B (", object$sim$playerB$player, ")"),
                       title = paste(object$sim$n, " Set Simulations: Player A (",
                                     object$sim$playerA$player, ") wins ",
-                                    round(object$results$pct, 3), sep = ""))
+                                    round(object$results$pct, 3), sep = "")) +
+        ggplot2::theme(rect = ggplot2::element_rect(fill = "#FCFCFC"))
 
 }
