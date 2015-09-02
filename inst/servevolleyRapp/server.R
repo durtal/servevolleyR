@@ -5,14 +5,14 @@ library(servevolleyR)
 shinyServer(function(input, output) {
 
     rv <- reactiveValues(matches = NULL,
-                         sets = 3,
+                         totalSets = 3,
                          pAsets = 0,
                          pBsets = 0,
                          setScore = c(0, 0))
 
     observeEvent(input$Sets, {
-        rv$sets <- as.numeric(input$Sets)
-        tmp <- floor(rv$sets / 2)
+        rv$totalSets <- as.numeric(input$Sets)
+        tmp <- floor(rv$totalSets / 2)
         output$pASets <- renderUI({
             radioButtons(inputId = "pASets", label = "Player A Sets",
                          choices = 0:tmp, selected = 0)
@@ -32,7 +32,7 @@ shinyServer(function(input, output) {
     })
     observeEvent(input$simulate,
                  {
-                     rv$matches <- simMatches(500, sets = rv$sets,currentScore = rv$setScore,
+                     rv$matches <- simMatches(500, sets = rv$totalSets, currentScore = rv$setScore,
                                         pA = input$pA, p2A = input$p2A, firstServeA = input$firstServeA,
                                         pB = input$pB, p2B = input$p2B, firstServeB = input$firstServeB)
                      rv$sets <- simSets(500,
