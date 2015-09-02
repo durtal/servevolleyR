@@ -21,11 +21,7 @@ Help pages are available [here](http://durtal.github.io/servevolleyR/), a couple
 
 ### Shiny
 
-I have added a shiny app, but this being my first shiny app I think it might be a bit buggy, so it's not included in the master branch, if you want to install the package with the shiny app:
-
-```R
-devtools::install_github("durtal/servevolleyR", ref = "shiny")
-```
+I have added a shiny app, I think I've ironed out all the bugs, so this app is available in the master branch (having previously been kept in the shiny branch)
 
 To run the shiny app:
 
