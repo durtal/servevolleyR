@@ -11,7 +11,7 @@ shinyUI(fluidPage(
         column(
             9, align = "center",
             h4("This app simulates tennis games, sets, and matches, between two players using the", a("servevolleyR", href = "https://github.com/durtal/servevolleyR"), "package."),
-            p("The sliders under Players A and B are the probability that the player will win a point on their first Serve (top slider), the probability that the player will win a point on their second serve, and the probability that the players first serve will be in.  Changing these sliders wll automatically update the plots underneath, showing the probability that the player will win a game on their serve (and the score of each game, 5-3 is effectively winning after deuce)."),
+            p("The sliders under Players A and B are the probability that the player will win a point on their first Serve (top slider), the probability that the player will win a point on their second serve (middle slider), and the probability that the players first serve will be in (bottom slider).  Changing these sliders will automatically update the plots underneath, showing the probability that the player will win a game on their serve (and the score of each game, 5-3 is effectively winning after deuce)."),
             p("To simulate sets and matches, then the simulate Button in the middle panel needs to be clicked, simulations are limited to 500 (in order to keep the app relatively speedy), and are based on Player A opening the serving in both the set simulations and match simulations.")
         ),
         column(1)
