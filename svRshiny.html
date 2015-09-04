@@ -10,7 +10,7 @@
 
 
 
-<title>simPoint</title>
+<title>svRshiny</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -180,56 +180,15 @@ img {
 </nav>
 
 <div id="header">
-<h1 class="title">simPoint</h1>
+<h1 class="title">svRshiny</h1>
 </div>
 
 
-<p>Simulate a service point given a number of parameters for the server, that include probability of the server winning a point on their first serve, on their second serve, and the probability that their first serve will go in.</p>
-<div id="usage" class="section level3">
-<h3>Usage</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simPoint</span>(p, <span class="dt">p2 =</span> <span class="ot">NULL</span>, <span class="dt">firstServe =</span> <span class="ot">NULL</span>)</code></pre>
-</div>
-<div id="arguments" class="section level3">
-<h3>Arguments</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left">param</th>
-<th align="left">details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">p</td>
-<td align="left">probability of server winning point on their first serve</td>
-</tr>
-<tr class="even">
-<td align="left">p2</td>
-<td align="left">probability of server winning point on their second serve</td>
-</tr>
-<tr class="odd">
-<td align="left">firstServe</td>
-<td align="left">probability of first serve being in</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="return" class="section level3">
-<h3>Return</h3>
-<p>The value returned is numeric, 1 if the server wins and 0 if the returner wins.</p>
-</div>
-<div id="example" class="section level3">
-<h3>Example</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
-<p>Use <code>replicate</code> to simulate many points:</p>
-<pre class="sourceCode r"><code class="sourceCode r">pts &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simPoint</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>))
-<span class="co"># summarise results</span>
-<span class="kw">table</span>(pts) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(pts))</code></pre>
-<pre><code>## pts
-##     0     1 
-## 0.304 0.696</code></pre>
-</div>
+<p>This is a simple, and working (hopefully), shiny app that allows users to use the functions in <code>servevolleyR</code> interactively. Because the functions can sometimes take some time to run, the app is a little slow on occasion, and the rendering of plots is a little clunky (any tips to fix these issues please contribute!).</p>
+<p>To launch the app:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">svRshiny</span>()</code></pre>
+<p>The app should look something like:</p>
+<p><img src="svRshiny-app.jpg" /></p>
 
 
 </div>
