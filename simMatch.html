@@ -81,6 +81,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </style>
 
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 </head>
 
@@ -272,7 +273,7 @@ img {
          <span class="dt">pA =</span> .<span class="dv">78</span>, <span class="dt">pB =</span> .<span class="dv">70</span>,
          <span class="dt">p2A =</span> .<span class="dv">56</span>, <span class="dt">firstServeA =</span> .<span class="dv">67</span>,
          <span class="dt">p2B =</span> .<span class="dv">6</span>, <span class="dt">firstServeB =</span> .<span class="dv">7</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 1</code></pre>
 <p>Adding <code>detail = TRUE</code> will return a detailed list with data about the simulated match.</p>
 <pre class="sourceCode r"><code class="sourceCode r">egMatch &lt;-<span class="st"> </span><span class="kw">simMatch</span>(<span class="dt">sets =</span> <span class="dv">3</span>, <span class="dt">finalSetTiebreak =</span> <span class="ot">TRUE</span>, <span class="dt">detail =</span> <span class="ot">TRUE</span>,
                     <span class="dt">pA =</span> .<span class="dv">78</span>, <span class="dt">pB =</span> .<span class="dv">70</span>,
@@ -283,16 +284,16 @@ img {
 <pre><code>## Match Result:
 ##  A won the match.
 ## 
-##  player sets set1 set2
-##       A    2    7    6
-##       B    0    5    3</code></pre>
+##  player sets set1 set2 set3
+##       A    2    6    4    6
+##       B    1    2    6    3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egMatch)</code></pre>
 <pre><code>## Match Result:
 ##  A won the match.
 ## 
-##  player sets set1 set2
-##       A    2    7    6
-##       B    0    5    3
+##  player sets set1 set2 set3
+##       A    2    6    4    6
+##       B    1    2    6    3
 ## 
 ## Server probabilities:
 ## 
@@ -306,19 +307,19 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatch)
 <span class="kw">head</span>(df)</code></pre>
 <pre><code>##   playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1       A       B  2  0      1     1  A  B    7    5       1      1
-## 2       A       B  2  0      1     1  A  B    7    5       1      2
-## 3       A       B  2  0      1     1  A  B    7    5       1      3
-## 4       A       B  2  0      1     1  A  B    7    5       1      4
-## 5       A       B  2  0      1     1  A  B    7    5       1      5
-## 6       A       B  2  0      1     1  A  B    7    5       1      6
+## 1       A       B  2  1      1     1  A  B    6    2       1      1
+## 2       A       B  2  1      1     1  A  B    6    2       1      2
+## 3       A       B  2  1      1     1  A  B    6    2       1      3
+## 4       A       B  2  1      1     1  A  B    6    2       1      4
+## 5       A       B  2  1      1     1  A  B    6    2       1      5
+## 6       A       B  2  1      1     1  A  B    6    2       1      6
 ##   serving    p   p2 firstServe game_res server returner
-## 1       A 0.78 0.56       0.67        1      4        0
-## 2       B 0.70 0.60       0.70        1      4        1
-## 3       A 0.78 0.56       0.67        1      4        1
-## 4       B 0.70 0.60       0.70        1      6        4
-## 5       A 0.78 0.56       0.67        1      4        0
-## 6       B 0.70 0.60       0.70        1      4        1</code></pre>
+## 1       A 0.78 0.56       0.67        1      4        1
+## 2       B 0.70 0.60       0.70        1      6        4
+## 3       A 0.78 0.56       0.67        1      5        3
+## 4       B 0.70 0.60       0.70        0      1        4
+## 5       A 0.78 0.56       0.67        1      4        1
+## 6       B 0.70 0.60       0.70        1      4        2</code></pre>
 <p>The dataset contains the following variables:</p>
 <table>
 <thead>

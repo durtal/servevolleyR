@@ -81,6 +81,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </style>
 
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 </head>
 
@@ -238,7 +239,7 @@ img {
 <div id="example" class="section level3">
 <h3>Example</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a look at a detailed return</span>
 game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</code></pre>
 <p>The object <code>game</code> has a class of <strong>svR_game</strong> which comes with a few methods</p>
@@ -262,12 +263,12 @@ game &lt;-<span class="st"> </span><span class="kw">simGame</span>(<span class="
 <p>To simulate many games, you can either use <code>replicate</code>, as shown below which is used with <code>detail = FALSE</code>, or <a href="simGames.html">simGames</a> which will return a detailed list with data about the simulated games, rather than just the result.</p>
 <pre class="sourceCode r"><code class="sourceCode r">game &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">simGame</span>(<span class="dt">p =</span> .<span class="dv">78</span>, <span class="dt">p2 =</span> .<span class="dv">56</span>, <span class="dt">firstServe =</span> .<span class="dv">67</span>))
 <span class="kw">head</span>(game)</code></pre>
-<pre><code>## [1] 1 1 0 1 1 1</code></pre>
+<pre><code>## [1] 1 1 1 1 1 1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># summarise results</span>
 <span class="kw">table</span>(game) /<span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(game))</code></pre>
 <pre><code>## game
 ##     0     1 
-## 0.097 0.903</code></pre>
+## 0.088 0.912</code></pre>
 </div>
 <div id="using-simdf" class="section level3">
 <h3>Using <code>simDf</code></h3>
