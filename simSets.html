@@ -114,7 +114,7 @@ img {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://durtal.github.io/">durtal.github.io</a>
+			<a class="navbar-brand" href="https://github.com/durtal">durtal@github</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -270,7 +270,7 @@ img {
 ##       A 0.78 0.56       0.67
 ##       B 0.70 0.60       0.70
 ## 
-## Player A (A) won 0.66 of sets.</code></pre>
+## Player A (A) won 0.64 of sets.</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egSets)</code></pre>
 <pre><code>## 
 ## Simulation of 100 sets:
@@ -280,15 +280,15 @@ img {
 ##       A 0.78 0.56       0.67
 ##       B 0.70 0.60       0.70
 ## 
-## Player A (A) won 0.66 of sets.
+## Player A (A) won 0.64 of sets.
 ##        playerB
 ## playerA    1    2    3    4    5    6    7
-##       2                          0.05     
+##       2                          0.02     
 ##       3                          0.01     
-##       4                          0.13     
-##       5                               0.05
-##       6 0.03 0.02 0.34 0.05           0.10
-##       7                     0.07 0.15</code></pre>
+##       4                          0.15     
+##       5                               0.04
+##       6 0.01 0.03 0.25 0.07           0.14
+##       7                     0.11 0.17</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(egSets)</code></pre>
 <p><img src="simSets_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
 </div>
@@ -305,12 +305,12 @@ img {
 ## 5     1  A  B    4    6       0      5       A 0.78 0.56       0.67
 ## 6     1  A  B    4    6       0      6       B 0.70 0.60       0.70
 ##   game_res server returner
-## 1        1      4        0
+## 1        1      4        2
 ## 2        1      4        1
-## 3        1      4        1
+## 3        1      6        4
 ## 4        1      5        3
-## 5        1      4        0
-## 6        1      5        3</code></pre>
+## 5        0      2        4
+## 6        1      4        1</code></pre>
 <p>The dataset contains the following variables:</p>
 <table>
 <thead>

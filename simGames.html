@@ -114,7 +114,7 @@ img {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://durtal.github.io/">durtal.github.io</a>
+			<a class="navbar-brand" href="https://github.com/durtal">durtal@github</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -242,7 +242,7 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">egGames</code></pre>
 <pre><code>## 
 ## Simulation of 10 service games:
-## Server won 0.8 (8/10) of games.
+## Server won 1 (10/10) of games.
 ## 
 ## Server probabilities:
 ##     p   p2 firstServe
@@ -250,7 +250,7 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egGames)</code></pre>
 <pre><code>## 
 ## Simulation of 10 service games:
-## Server won 0.8 (8/10) of games.
+## Server won 1 (10/10) of games.
 ## 
 ## Server probabilities:
 ##     p   p2 firstServe
@@ -258,11 +258,9 @@ img {
 ## 
 ## Service Game scores:
 ##       returner
-## server   0   1   2   3   4   5
-##      2                 0.1    
-##      3                     0.1
-##      4 0.3 0.1 0.2            
-##      5             0.2</code></pre>
+## server   0   1   3
+##      4 0.4 0.3    
+##      5         0.3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(egGames)</code></pre>
 <p><img src="simGames_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
 </div>
@@ -272,12 +270,12 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egGames)
 <span class="kw">head</span>(df)</code></pre>
 <pre><code>##   simNo player    p   p2 firstServe result server returner
-## 1     1      A 0.78 0.56       0.67      1      4        1
+## 1     1      A 0.78 0.56       0.67      1      4        0
 ## 2     2      A 0.78 0.56       0.67      1      4        0
-## 3     3      A 0.78 0.56       0.67      1      4        0
-## 4     4      A 0.78 0.56       0.67      1      4        2
-## 5     5      A 0.78 0.56       0.67      1      5        3
-## 6     6      A 0.78 0.56       0.67      0      3        5</code></pre>
+## 3     3      A 0.78 0.56       0.67      1      4        1
+## 4     4      A 0.78 0.56       0.67      1      5        3
+## 5     5      A 0.78 0.56       0.67      1      4        0
+## 6     6      A 0.78 0.56       0.67      1      5        3</code></pre>
 <p>The variables in the dataset are:</p>
 <table>
 <thead>
