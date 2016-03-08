@@ -285,15 +285,15 @@ img {
 ##  B won the match.
 ## 
 ##  player sets set1 set2
-##       A    0    6    3
-##       B    2    7    6</code></pre>
+##       A    0    4    4
+##       B    2    6    6</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(egMatch)</code></pre>
 <pre><code>## Match Result:
 ##  B won the match.
 ## 
 ##  player sets set1 set2
-##       A    0    6    3
-##       B    2    7    6
+##       A    0    4    4
+##       B    2    6    6
 ## 
 ## Server probabilities:
 ## 
@@ -307,16 +307,16 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">simDf</span>(egMatch)
 <span class="kw">head</span>(df)</code></pre>
 <pre><code>##   playerA playerB mA mB result setNo pA pB setA setB set_res gameNo
-## 1       A       B  0  2      0     1  A  B    6    7       0      1
-## 2       A       B  0  2      0     1  A  B    6    7       0      2
-## 3       A       B  0  2      0     1  A  B    6    7       0      3
-## 4       A       B  0  2      0     1  A  B    6    7       0      4
-## 5       A       B  0  2      0     1  A  B    6    7       0      5
-## 6       A       B  0  2      0     1  A  B    6    7       0      6
+## 1       A       B  0  2      0     1  A  B    4    6       0      1
+## 2       A       B  0  2      0     1  A  B    4    6       0      2
+## 3       A       B  0  2      0     1  A  B    4    6       0      3
+## 4       A       B  0  2      0     1  A  B    4    6       0      4
+## 5       A       B  0  2      0     1  A  B    4    6       0      5
+## 6       A       B  0  2      0     1  A  B    4    6       0      6
 ##   serving    p   p2 firstServe game_res server returner
-## 1       A 0.78 0.56       0.67        1      4        2
+## 1       A 0.78 0.56       0.67        1      4        1
 ## 2       B 0.70 0.60       0.70        1      4        2
-## 3       A 0.78 0.56       0.67        1      5        3
+## 3       A 0.78 0.56       0.67        1      4        1
 ## 4       B 0.70 0.60       0.70        1      4        1
 ## 5       A 0.78 0.56       0.67        1      4        2
 ## 6       B 0.70 0.60       0.70        1      4        2</code></pre>
